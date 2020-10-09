@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -21,104 +22,123 @@
     <!--表单验证-->
     <script src="javaex/pc/js/javaex-formVerify.js"></script>
     <style>
-            .logo{
-                width: 93.84px;
-                height: 60px;
-                margin-left: 5px;
-            }
-            .logo_name{
-                margin-left: 20px;
-            }
-        </style>
+        .logo {
+            width: 93.84px;
+            height: 60px;
+            margin-left: 5px;
+        }
+        
+        .logo_name {
+            margin-left: 20px;
+        }
+    </style>
 </head>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
 <body>
-        <!--顶部导航-->
-        <div class="admin-navbar">
-            <div class="admin-container-fluid clear">
-                <!--logo名称-->
-                <div class="admin-logo"><image class="logo" src="https://ae01.alicdn.com/kf/H582410e2afca4e89a0ab646fb739786bH.png"/>
-                </div>
-                <div class="admin-logo"><span class="logo_name">CubeOnline 魔方比赛系统</span>
-                </div>
-        
-                <ul class="admin-navbar-nav fr">
-                    <li>
-                        <a href="javascript:;">欢迎您，${username}</a>
-                        <ul class="dropdown-menu" style="right: 10px;">
-                            <li><a href="${pageContext.request.contextPath}/admin/login">退出当前账号</a></li>
-                        </ul>
-                    </li>
-                </ul>
+
+
+    <!--顶部导航-->
+    <div class="admin-navbar">
+        <div class="admin-container-fluid clear">
+            <!--logo名称-->
+            <div class="admin-logo">
+                <image class="logo" src="https://ae01.alicdn.com/kf/H582410e2afca4e89a0ab646fb739786bH.png" />
             </div>
+            <div class="admin-logo"><span class="logo_name">CubeOnline 魔方比赛系统</span>
+            </div>
+
+            <ul class="admin-navbar-nav fr">
+                <li>
+                    <a href="javascript:;">欢迎您，{{ username }}</a>
+                    <ul class="dropdown-menu" style="right: 10px;">
+                        <!-- <li><a href="">退出当前账号</a></li> -->
+                        <li><a href="" @click="logout">退出当前账号</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
-        
-        <!--主题内容-->
-        <div class="admin-mian">
-            <!--左侧菜单-->
-            <div class="admin-aside admin-aside-fixed">
-                <h1><span class="admin-nav-name">菜单</span></h1>
-                <div id="admin-toc" class="admin-toc">
-                    <div class="menu-box">
-                        <div id="menu" class="menu">
-                            <ul>
-                                <li class="menu-item">
-                                    <a href="javascript:;">所有项目<i class="icon-keyboard_arrow_left"></i></a>
-                                    <ul>
-                                        <li><a href="javascript:page('result_5.html');">二阶</a></li>
-                                        <li><a href="javascript:page('${pageContext.request.contextPath}/system/developing');">三阶</a></li>
-                                        <li><a href="javascript:page('${pageContext.request.contextPath}/system/developing');">四阶</a></li>
-                                        <li><a href="javascript:page('${pageContext.request.contextPath}/system/developing');">五阶</a></li>
-                                        <li><a href="javascript:page('${pageContext.request.contextPath}/system/developing');">六阶</a></li>
-                                        <li><a href="javascript:page('${pageContext.request.contextPath}/system/developing');">七阶</a></li>
-                                        <li><a href="javascript:page('${pageContext.request.contextPath}/system/developing');">三单</a></li>
-                                        <li><a href="javascript:page('${pageContext.request.contextPath}/system/developing');">三盲</a></li>
-                                        <li><a href="javascript:page('${pageContext.request.contextPath}/system/developing');">最少步</a></li>
-                                        <li><a href="javascript:page('${pageContext.request.contextPath}/system/developing');">五魔方</a></li>
-                                        <li><a href="javascript:page('${pageContext.request.contextPath}/system/developing');">斜转</a></li>
-                                        <li><a href="javascript:page('${pageContext.request.contextPath}/system/developing');">金字塔</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item ">
-                                    <a href="javascript:page('${pageContext.request.contextPath}/contestant/list_con');">选手信息</a>
-                                </li>
-                            </ul>
-                        </div>
+    </div>
+
+    <!--主题内容-->
+    <div class="admin-mian">
+        <!--左侧菜单-->
+        <div class="admin-aside admin-aside-fixed">
+            <h1><span class="admin-nav-name">菜单</span></h1>
+            <div id="admin-toc" class="admin-toc">
+                <div class="menu-box">
+                    <div id="menu" class="menu">
+                        <ul>
+                            <li class="menu-item">
+                                <a href="javascript:;">所有项目<i class="icon-keyboard_arrow_left"></i></a>
+                                <ul class="list">
+                                    <li v-if="eventList.e222 > 0"><a href="javascript:page('result_5.html');">二阶</a></li>
+                                    <li v-if="eventList.e333 > 0"><a href="javascript:page('${pageContext.request.contextPath}/system/developing');">三阶</a></li>
+                                    <li v-if="eventList.e444 > 0"><a href="javascript:page('${pageContext.request.contextPath}/system/developing');">四阶</a></li>
+                                    <li v-if="eventList.e555 > 0"><a href="javascript:page('${pageContext.request.contextPath}/system/developing');">五阶</a></li>
+                                    <li v-if="eventList.e666 > 0"><a href="javascript:page('${pageContext.request.contextPath}/system/developing');">六阶</a></li>
+                                    <li v-if="eventList.e777 > 0"><a href="javascript:page('${pageContext.request.contextPath}/system/developing');">七阶</a></li>
+                                    <li v-if="eventList.e333oh > 0"><a href="javascript:page('${pageContext.request.contextPath}/system/developing');">三单</a></li>
+                                    <li v-if="eventList.e333bf > 0"><a href="javascript:page('${pageContext.request.contextPath}/system/developing');">三盲</a></li>
+                                    <li v-if="eventList.e333fm > 0"><a href="javascript:page('${pageContext.request.contextPath}/system/developing');">最少步</a></li>
+                                    <li v-if="eventList.eminx > 0"><a href="javascript:page('${pageContext.request.contextPath}/system/developing');">五魔方</a></li>
+                                    <li v-if="eventList.e444bf > 0"><a href="javascript:page('${pageContext.request.contextPath}/system/developing');">四阶盲拧</a></li>
+                                    <li v-if="eventList.e555bf > 0"><a href="javascript:page('${pageContext.request.contextPath}/system/developing');">五阶盲拧</a></li>
+                                    <li v-if="eventList.eskewb > 0"><a href="javascript:page('${pageContext.request.contextPath}/system/developing');">斜转</a></li>
+                                    <li v-if="eventList.epyram > 0"><a href="javascript:page('${pageContext.request.contextPath}/system/developing');">金字塔</a></li>
+                                    <li v-if="eventList.eclock > 0"><a href="javascript:page('${pageContext.request.contextPath}/system/developing');">魔表</a></li>
+                                    <li v-if="eventList.esq1 > 0"><a href="javascript:page('${pageContext.request.contextPath}/system/developing');">SQ1</a></li>
+                                    <li v-if="eventList.e333mbf > 0"><a href="javascript:page('${pageContext.request.contextPath}/system/developing');">多盲</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-item ">
+                                <a href="javascript:page('${pageContext.request.contextPath}/contestant/list_con');">选手信息</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        
-            <!--iframe载入内容-->
-            <div class="admin-markdown">
-                <iframe id="page" src="${pageContext.request.contextPath}/system/welcome"></iframe>
-            </div>
         </div>
-        </body>
-        <script>
-            var hightUrl = "xxxx";
-            javaex.menu({
-                id : "menu",
-                isAutoSelected : true,
-                key : "",
-                url : hightUrl
-            });
-        
-            $(function() {
-                // 设置左侧菜单高度
-                setMenuHeight();
-            });
-        
-            /**
-             * 设置左侧菜单高度
-             */
-            function setMenuHeight() {
-                var height = document.documentElement.clientHeight - $("#admin-toc").offset().top;
-                height = height - 10;
-                $("#admin-toc").css("height", height+"px");
-            }
-        
-            // 控制页面载入
-            function page(url) {
-                $("#page").attr("src", url);
-            }
-        </script>
+
+        <!-- iframe载入内容 -->
+        <div class="admin-markdown">
+            <iframe id="page" src="adminWelcome.html"></iframe>
+        </div>
+
+    </div>
+
+</body>
+<script>
+    var hightUrl = "xxxx";
+    javaex.menu({
+        id: "menu",
+        isAutoSelected: true,
+        key: "",
+        url: hightUrl
+    });
+
+    $(function() {
+        // 设置左侧菜单高度
+        setMenuHeight();
+    });
+
+    /**
+     * 设置左侧菜单高度
+     */
+    function setMenuHeight() {
+        var height = document.documentElement.clientHeight - $("#admin-toc").offset().top;
+        height = height - 10;
+        $("#admin-toc").css("height", height + "px");
+    }
+
+    // 控制页面载入
+    function page(url) {
+        $("#page").attr("src", url);
+    }
+</script>
+
+<script src="./vuejs/admin/backindex.js">
+</script>
+
 </html>
