@@ -12,7 +12,7 @@ new Vue({
             axios.post("http://localhost:8084/admin/checkGame").then(
                 function(response) {
                     _this.gameList = response.data.data
-                    console.log(response.data.data);
+                    console.log(response);
                 }
             ).catch(
                 function(error) {
@@ -21,7 +21,9 @@ new Vue({
 
         },
         toGameDetail: function(cId) {
+            sessionStorage['cId'] = cId;
             // alert(cId),
+
             window.location.href = "/backstageIndex.html?cId=" + cId;
         }
     }
