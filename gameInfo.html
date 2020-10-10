@@ -3,7 +3,6 @@
 
 <head>
     <title>gameInfo</title>
-
     <!--字体图标-->
     <link href="javaex/pc/css/icomoon.css" rel="stylesheet" />
     <!--动画-->
@@ -105,9 +104,8 @@
         height: 40px;
     }
 </style>
-
 <body>
-    <div class="main">
+    <div class="main" id="main">
         <div class="logo">
             <div class="admin_logo"><img class="logo_image" src="https://ae01.alicdn.com/kf/H582410e2afca4e89a0ab646fb739786bH.png" />
             </div>
@@ -116,29 +114,54 @@
         </div>
         <form id="choose_game">
             <div class="contest_1">
-                <button class="button blue radius-8 contest_choose">可选比赛</button><br>
+                <button class="button blue radius-8 contest_choose">可选比赛,点击报名</button><br>
                 <div class="game_choose">
-                    <input type="checkbox" class="fill" />比赛1<br>
-                    <input type="checkbox" class="fill" />比赛1<br>
-                    <input type="checkbox" class="fill" />比赛1<br>
-                    <button class="button red radius-5 "> 确认报名</button>
-                    <br>
+                    <div style="margin-bottom: 15px;font-size: 20px" v-for="item in chosen"><br> <a href="www.baidu.com">{{item.name}}</a> <br></div>
                 </div>
             </div>
-
         </form>
-
         <div class="contest_2">
             <button class="button navy radius-8 contest_checked">已选比赛, 点击进入</button>
             <div class="checked_contest">
                 <!-- <a href="http://blog.lstf666.com"><input type="checkbox" class="fill" checked onclick="window.location.href('http://blog.lstf666.com')" />比赛1</a><br> -->
-                <br><a href="gameDetail.html"><button class="button green radius-8 game_checked">比赛1</button></a>
-                <br><a href="#"><button class="button green radius-8 game_checked">比赛1</button></a>
-                <br><a href="#"><button class="button green radius-8 game_checked">比赛1</button></a>
+                <div style="margin-bottom: 15px;font-size: 20px" v-for="item in optional"><br> <a href="www.baidu.com">{{item.name}}</a> <br></div>
             </div>
         </div>
-
     </div>
 </body>
-
+  <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <!-- 官网提供的 axios 在线地址 -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <!-- 自己的js -->
+  <script>
+    var app = new Vue({
+      el:"#main",
+      data:{
+        optional:[],
+        chosen:[]
+      },
+      methods:{
+        getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+            var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+            if (r != null) return decodeURI(r[2]); return null; //返回参数值
+        },
+        createcode(){
+            var that = this;
+            axios.get("http://cube-online.lstf666.cn:8083/Cube-Online/player/queryGame?pid="+this.getUrlParam('pId')+"")
+                .then(function(res){
+                    console.log(res);
+                    that.optional = res.data.data1;
+                    that.chosen = res.data.data2;      
+            },function(err){
+                console.log(err);
+            })
+        }, 
+      },
+      mounted:function(){
+        this.createcode();//需要触发的函数
+      }
+    })
+  </script>
 </html>

@@ -22,66 +22,110 @@
      <script src="javaex/pc/js/javaex-formVerify.js"></script>
 </head>
 <body>
-        <style>
-                .block{
-                    width: 800px;
-                    height: 450px;
-                    margin-top: 120px;
-                }
-                body{
-                    background-image: url("http://img.javaex.cn/FipOsQoe90u_7i3dOVpaeX5QD7c6");
-                }
-            </style>
-            
-            <div class="list-content">
-                <!--块元素-->
-                <div class="block">
-                    <!--修饰块元素名称-->
-                    <div class="banner">
-                        <p class="tab fixed">选手注册</p>
-                    </div>
-                    <!--正文内容-->
-                    <div class="main">
-                        <form id="form">
-                            <!--文本框-->
-                            <div class="unit clear">
-                                <div class="left"><span class="required">*</span><p class="subtitle">用户名</p></div>
-                                <div class="right">
-                                    <input type="text" class="text username" name="username" data-type="登录名" error-msg="只能输入5-10个以字母开头，可带数字的字符串" error-pos="42" placeholder="请输入用户名"/>
-                                </div>
-                            </div>
-                            <!--文本框-->
-                            <div class="unit clear">
-                                <div class="left"><span class="required">*</span><p class="subtitle">密码</p></div>
-                                <div class="right">
-                                    <input type="text" class="text password"  name="password" data-type="" error-msg="" error-pos="" placeholder="请输入密码" />
-                                </div>
-                            </div>
-                            <!--文本框-->
-                            <div class="unit clear">
-                                <div class="left"><span class="required">*</span><p class="subtitle">姓名</p></div>
-                                <div class="right">
-                                    <input type="text" class="text name"  name="name" data-type="中文" error-msg="请输入正确的姓名" error-pos="42" placeholder="请输入真实姓名" />
-                                </div>
-                            </div>
-                            <!--文本框-->
-                            <div class="unit clear">
-                                <div class="left"><span class="required">*</span><p class="subtitle">邮箱</p></div>
-                                <div class="right">
-                                    <input type="text" class="text email" data-type="邮箱" name="email" error-msg="请输入正确的邮箱地址" error-pos="42" placeholder="请输入邮箱"/>
-                                </div>
-                            </div>
-                            <!--提交按钮-->
-                            <div class="unit clear" style="width: 800px;">
-                                <div style="text-align: center;">
-                                    <!--表单提交时，必须是input元素，并指定type类型为button，否则ajax提交时，会返回error回调函数-->
-                                    <input type="button" id="return" class="button no" value="返回" />
-                                    <input type="button" id="save" class="button yes" value="保存" />
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+    <style>
+            .block{
+                width: 800px;
+                height: 450px;
+                margin-top: 120px;
+            }
+            body{
+                background-image: url("http://img.javaex.cn/FipOsQoe90u_7i3dOVpaeX5QD7c6");
+            }
+        </style>
+        
+        <div class="list-content">
+            <!--块元素-->
+            <div class="block">
+                <!--修饰块元素名称-->
+                <div class="banner">
+                    <p class="tab fixed">选手注册</p>
                 </div>
-            </div>            
+                <!--正文内容-->
+                <div class="main">
+                    <form id="form">
+                        <!--文本框-->
+                        <div class="unit clear">
+                            <div class="left"><span class="required">*</span><p class="subtitle">用户名</p></div>
+                            <div class="right">
+                                <input type="text" class="text username" name="username" data-type="登录名" error-msg="只能输入5-10个以字母开头，可带数字的字符串" error-pos="42" placeholder="请输入用户名"/>
+                            </div>
+                        </div>
+                        <!--文本框-->
+                        <div class="unit clear">
+                            <div class="left"><span class="required">*</span><p class="subtitle">密码</p></div>
+                            <div class="right">
+                                <input type="text" class="text password"  name="password" data-type="密码" error-msg="" error-pos="" placeholder="请输入密码" />
+                            </div>
+                        </div>
+                        <!--文本框-->
+                        <div class="unit clear">
+                            <div class="left"><span class="required">*</span><p class="subtitle">姓名</p></div>
+                            <div class="right">
+                                <input type="text" class="text name"  name="name" data-type="中文" error-msg="请输入正确的姓名" error-pos="42" placeholder="请输入真实姓名" />
+                            </div>
+                        </div>
+                        <!--文本框-->
+                        <div class="unit clear">
+                            <div class="left"><span class="required">*</span><p class="subtitle">邮箱</p></div>
+                            <div class="right">
+                                <input type="text" class="text email" data-type="邮箱" name="email" error-msg="请输入正确的邮箱地址" error-pos="42" placeholder="请输入邮箱"/>
+                            </div>
+                        </div>
+                        <!--提交按钮-->
+                        <div class="unit clear" style="width: 800px;">
+                            <div style="text-align: center;">
+                                <!--表单提交时，必须是input元素，并指定type类型为button，否则ajax提交时，会返回error回调函数-->
+                                <input type="button" id="return" class="button no" value="返回" />
+                                <input type="button" id="save" class="button yes" value="立即注册" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>            
 </body>
+<script>
+    // 监听点击保存按钮事件
+    $("#save").click(function() {
+    // 表单验证函数
+    if (javaexVerify()) {
+        var data = $("#form").serialize();
+        console.log(data);
+        data= decodeURIComponent(data,true);
+        console.log(data);
+          $.ajax({
+            url:'http://cube-online.lstf666.cn:8083/Cube-Online/player/register',
+            data:data,
+            contentType:'application/json;charset=utf-8',
+            dataType:'json',
+            type:'GET',
+            success:function (res) {
+                console.log(res)
+                if(res.type == 'success'){
+                    javaex.message({
+                        content : "注册成功",
+                        type : "success"
+                    });
+                    setTimeout(function() {
+                        location.href = "playRegisterSuccess.html"   
+		}, 2000);
+
+                }else{
+                    javaex.message({
+                        content : res.msg,
+                        type : "error"
+                    });
+                }
+            }
+        }) 
+    }
+});
+            // 监听点击返回按钮事件
+            $("#return").click(function() {
+            javaex.message({
+                        content : "来都来了，别想走了",
+                        type : "error"
+                    });
+    });
+</script>
 </html>
