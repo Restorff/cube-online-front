@@ -105,7 +105,7 @@
     }
 </style>
 <body>
-    <div class="main" id="main">
+    <div class="main">
         <div class="logo">
             <div class="admin_logo"><img class="logo_image" src="https://ae01.alicdn.com/kf/H582410e2afca4e89a0ab646fb739786bH.png" />
             </div>
@@ -114,17 +114,17 @@
         </div>
         <form id="choose_game">
             <div class="contest_1">
-                <button class="button blue radius-8 contest_choose">可选比赛,点击报名</button><br>
-                <div class="game_choose">
-                    <div style="margin-bottom: 15px;font-size: 20px" v-for="item in chosen"><br> <a href="www.baidu.com">{{item.name}}</a> <br></div>
+                <div style="margin-bottom: 15px;font-size: 20px;margin-left: 90px"><br>可选比赛,点击报名 <br></div>
+                <div class="checked_contest" >
+                    <a style="margin-bottom: 15px" class="button indigo radius-8 contest_choose" v-for="item in chosen" @click="toGameApply(item.cId)"> <div style="margin-top: 7px">{{item.name}}</div> </a><br>
                 </div>
             </div>
         </form>
-        <div class="contest_2">
-            <button class="button navy radius-8 contest_checked">已选比赛, 点击进入</button>
-            <div class="checked_contest">
+        <div class="choose_game">
+                <div style="margin-bottom: 15px;font-size: 20px;margin-left: 90px"><br>已选比赛,点击进入 <br></div>
+            <div class="checked_contest" >
                 <!-- <a href="http://blog.lstf666.com"><input type="checkbox" class="fill" checked onclick="window.location.href('http://blog.lstf666.com')" />比赛1</a><br> -->
-                <div style="margin-bottom: 15px;font-size: 20px" v-for="item in optional"><br> <a href="www.baidu.com">{{item.name}}</a> <br></div>
+                <button style="margin-bottom: 15px" class="button navy radius-8 contest_choose" v-for="item in optional" @click="toGameDetail(item.cId)">{{item.name}}</button><br>
             </div>
         </div>
     </div>
@@ -135,33 +135,40 @@
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <!-- 自己的js -->
   <script>
-    var app = new Vue({
-      el:"#main",
-      data:{
-        optional:[],
-        chosen:[]
+var app = new Vue({
+    el:".main",
+    data:{
+      optional:[],
+      chosen:[],
+      isShow:false,
+    },
+    mounted:function(){
+      this.createcod();//需要触发的函数
+    },
+    methods:{
+      getUrlParam(name) {
+          var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+          var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+          if (r != null) return decodeURI(r[2]); return null; //返回参数值
       },
-      methods:{
-        getUrlParam(name) {
-            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-            var r = window.location.search.substr(1).match(reg);  //匹配目标参数
-            if (r != null) return decodeURI(r[2]); return null; //返回参数值
-        },
-        createcode(){
-            var that = this;
-            axios.get("http://cube-online.lstf666.cn:8083/Cube-Online/player/queryGame?pid="+this.getUrlParam('pId')+"")
-                .then(function(res){
-                    console.log(res);
-                    that.optional = res.data.data1;
-                    that.chosen = res.data.data2;      
-            },function(err){
-                console.log(err);
-            })
-        }, 
+      createcod(){
+          var that = this;
+          axios.get("http://cube-online.lstf666.cn:8083/Cube-Online/player/queryGame?pid="+this.getUrlParam('pId')+"")
+              .then(function(res){
+                  console.log(res);
+                  that.optional = res.data.data1;
+                  that.chosen = res.data.data2;      
+          },function(err){
+              console.log(err);
+          })
+      }, 
+      toGameDetail(cId) {
+        window.location.href = "gameDetail.html?cId="+cId+"&&pId="+this.getUrlParam("pId")+"";
       },
-      mounted:function(){
-        this.createcode();//需要触发的函数
+      toGameApply(cId) {
+        location.href = "apply.html?cId="+cId+"&&pId="+this.getUrlParam("pId")+"";
       }
-    })
+    },
+  })
   </script>
 </html>

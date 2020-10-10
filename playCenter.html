@@ -103,10 +103,10 @@
             <button class="button navy radius-8 contestant_login" onclick="toGameInfo()">查看我的报名</button>
         </div>
         <div class="register">
-            <button class="button indigo radius-8 contestant_login" onclick=location.href='privateResults.html'>我的成绩</button>
+            <button class="button indigo radius-8 contestant_login" onclick = "toMyResult()">我的成绩</button>
         </div>
         <div class="register">
-            <button class="button blue radius-8 contestant_login" onclick=location.href='gameResults.html'>查看赛果</button>
+            <button class="button blue radius-8 contestant_login" onclick="toAllResult()">查看赛果</button>
         </div>
     </div>
     </body>
@@ -124,6 +124,12 @@
         })
         function toGameInfo() {
             location.href = 'gameInfo.html?pId='+getUrlParam('pId')+'';
+        }
+        function toMyResult() {
+            location.href = 'gameListPlayer.html?pId='+getUrlParam('pId')+'';
+        }
+        function toAllResult() {
+            location.href = 'gameListPlayer.html?pId='+getUrlParam('pId')+'';
         }
     </script>
 </html>
