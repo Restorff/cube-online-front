@@ -115,12 +115,12 @@
         <form id="choose_game">
             <div class="contest_1">
                 <div style="margin-bottom: 15px;font-size: 20px;margin-left: 90px"><br>可选比赛,点击报名 <br></div>
-                <div class="checked_contest" >
+                <div class="checked_contest">
                     <a style="margin-bottom: 15px" class="button indigo radius-8 contest_choose" v-for="item in chosen" @click="toGameApply(item.cId)"> <div style="margin-top: 7px">{{item.name}}</div> </a><br>
                 </div>
             </div>
         </form>
-        <div class="choose_game">
+        <div class="choose_game" >
                 <div style="margin-bottom: 15px;font-size: 20px;margin-left: 90px"><br>已选比赛,点击进入 <br></div>
             <div class="checked_contest" >
                 <!-- <a href="http://blog.lstf666.com"><input type="checkbox" class="fill" checked onclick="window.location.href('http://blog.lstf666.com')" />比赛1</a><br> -->

@@ -125,12 +125,14 @@
         </div>
     </div>
     <div class="welcome">
-        欢迎你，${name}
-        请选择项目
+        当前比赛: {{this.competition.name}}<br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请选择参赛项目
     </div>
     <form id="form">
     <div class="choose">
         <div class="box">
+                <input type="hidden" :value="this.competition.cId" name="cId">
+                <input type="hidden" :value="this.pId" name="pId">
                 <label  style="margin: 10px " zoom="2" v-if="isShow1('e222')"><input type="checkbox"  value="1"  name="e222"/> &nbsp;二阶&nbsp;</label>
                 <label  style="margin: 10px " zoom="2" v-if="isShow1('e333')"><input type="checkbox"  value="1"  name="e333"/> &nbsp;三阶&nbsp;</label>
                 <label  style="margin: 10px " zoom="2" v-if="isShow1('e444')"><input type="checkbox"  value="1"  name="e444"/> &nbsp;四阶&nbsp;</label>
@@ -152,7 +154,7 @@
     </div>
     </form>
     <div class="submit">
-        <button class="button blue">确定报名</button>
+        <button class="button blue" @click="save()">确定报名</button>
     </div>
 </div>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -162,6 +164,7 @@ new Vue({
     el: ".main",
     data: {
         competition:{},
+        pId:""
     },
     mounted: function() {
         this.manageGame();
@@ -178,6 +181,7 @@ new Vue({
             axios.get("http://cube-online.lstf666.cn:8083/Cube-Online/admin/manage?cId="+this.getUrlParam("cId")+"")
                 .then(function(res){
                     _this.competition = res.data.data;
+                    _this.pId =_this.getUrlParam("pId")
                 console.log(res);
             },function(err){
                 console.log(err);
@@ -190,6 +194,23 @@ new Vue({
         }
         return false;
         },
+        save() {
+            var pId = this.pId;
+            var data = $("#form").serialize();
+             axios.post("http://cube-online.lstf666.cn:8083/Cube-Online/player/chooseEvent",data).then(function(res){
+                if(res.data.type == 'success') {
+                    javaex.message({
+                        content : "报名成功！",
+                        type : "success"
+                    });
+                    setTimeout(function() {
+                        location.href="gameInfo.html?pId="+pId+""
+		}, 1000);
+                }
+            },function(err){
+                console.log(err);
+            })          
+        }
     }
 })
 </script>
