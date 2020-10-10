@@ -97,17 +97,39 @@
             </div>
         </div>
         <div class="admin">
-            欢迎你，${name}
+
         </div>
         <div class="contestant">
-            <button class="button navy radius-8 contestant_login" onclick=location.href='gameInfo.html'>查看我的报名</button>
+            <button class="button navy radius-8 contestant_login" onclick="toGameInfo()">查看我的报名</button>
         </div>
         <div class="register">
-            <button class="button indigo radius-8 contestant_login" onclick=location.href='privateResults.html'>我的成绩</button>
+            <button class="button indigo radius-8 contestant_login" onclick = "toMyResult()">我的成绩</button>
         </div>
         <div class="register">
-            <button class="button blue radius-8 contestant_login" onclick=location.href='gameResults.html'>查看赛果</button>
+            <button class="button blue radius-8 contestant_login" onclick="toAllResult()">查看赛果</button>
         </div>
     </div>
     </body>
+    <script>
+        //获取url中的参数
+        var name;
+        function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+            var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+            if (r != null) return decodeURI(r[2]); return null; //返回参数值
+        }
+        $(function () {
+            name = getUrlParam("name");
+            $(".admin").text("欢迎你，"+name+"");
+        })
+        function toGameInfo() {
+            location.href = 'gameInfo.html?pId='+getUrlParam('pId')+'';
+        }
+        function toMyResult() {
+            location.href = 'gameListPlayer.html?pId='+getUrlParam('pId')+'';
+        }
+        function toAllResult() {
+            location.href = 'gameListPlayer.html?pId='+getUrlParam('pId')+'';
+        }
+    </script>
 </html>

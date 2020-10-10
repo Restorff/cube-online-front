@@ -85,35 +85,55 @@
                     <!--选项卡内容部分-->
                     <div class="tab-content">
                         <div class="choose">
-                            <form id="form">
+                            <form id="form1">
                                 <div class="box xiangmu">
-                                    <label zoom="2"><input type="checkbox" class="fill"  value="0"  id="c_2"/> &nbsp;二阶</label>&nbsp;
-                                    <label zoom="2"><input type="checkbox" class="fill"  value="0"  id="c_3"/> &nbsp;三阶</label>&nbsp;
-                                    <label zoom="2"><input type="checkbox" class="fill"  value="0"  id="c_4"/> &nbsp;四阶</label>
-                                    <br>
-                                    <label zoom="2"><input type="checkbox" class="fill"  value="0"  id="c_oh"/> &nbsp;三单</label>&nbsp;
-                                    <label zoom="2"><input type="checkbox" class="fill"  value="0"  id="c_sk"/> &nbsp;斜转</label>&nbsp;
-                                    <label zoom="2"><input type="checkbox" class="fill"  value="0"  id="c_py"/> &nbsp;塔</label>&nbsp;
+                                    <label zoom="2" v-show="isShow1('e222')"><input type="checkbox"  value="1"  name="e222"/> &nbsp;二阶</label>&nbsp;
+                                    <label zoom="2" v-show="isShow1('e333')"><input type="checkbox"  value="1"  name="e333"/> &nbsp;三阶</label>&nbsp;
+                                    <label zoom="2" v-show="isShow1('e444')"><input type="checkbox"  value="1"  name="e444"/> &nbsp;四阶</label>&nbsp;
+                                    <label zoom="2" v-show="isShow1('e555')"><input type="checkbox"  value="1"  name="e555"/> &nbsp;五阶</label>&nbsp;
+                                    <label zoom="2" v-show="isShow1('e666')"><input type="checkbox"  value="1"  name="e666"/> &nbsp;六阶</label>&nbsp;
+                                    <label zoom="2" v-show="isShow1('e777')"><input type="checkbox"  value="1"  name="e777"/> &nbsp;七阶</label>&nbsp;
+                                    <label zoom="2" v-show="isShow1('e333bf')"><input type="checkbox"  value="1"  name="e333bf"/> &nbsp;三盲</label>&nbsp;
+                                    <label zoom="2" v-show="isShow1('e333oh')"><input type="checkbox"  value="1"  name="e333oh"/> &nbsp;三单</label>&nbsp;
+                                    <label zoom="2" v-show="isShow1('e333fm')"><input type="checkbox"  value="1"  name="e333fm"/> &nbsp;最少步</label>&nbsp;
+                                    <label zoom="2" v-show="isShow1('eclock')"><input type="checkbox"  value="1"  name="eclock"/> &nbsp;魔表</label>&nbsp;
+                                    <label zoom="2" v-show="isShow1('eminx')"><input type="checkbox"  value="1"  name="eminx"/> &nbsp;五魔方</label>&nbsp;
+                                    <label zoom="2" v-show="isShow1('epyram')"><input type="checkbox"  value="1"  name="epyram"/> &nbsp;金字塔</label>&nbsp;
+                                    <label zoom="2" v-show="isShow1('eskewb')"><input type="checkbox"  value="1"  name="eskewb"/> &nbsp;斜转</label>&nbsp;
+                                    <label zoom="2" v-show="isShow1('esq1')"><input type="checkbox"  value="1"  name="esq1"/> &nbsp;sq1</label>&nbsp;
+                                    <label zoom="2" v-show="isShow1('e444bf')"><input type="checkbox"  value="1"  name="e444bf"/> &nbsp;四盲</label>&nbsp;
+                                    <label zoom="2" v-show="isShow1('e555bf')"><input type="checkbox"  value="1"  name="e555bf"/> &nbsp;五盲</label>&nbsp;
+                                    <label zoom="2" v-show="isShow1('e333mbf')"><input type="checkbox"  value="1"  name="e333mbf"/> &nbsp;三阶多盲</label>&nbsp;
                                 </div>
                             </form>
                             <div class="submit">
-                                <button class="button blue radius-8">确定</button>
+                                <button class="button blue radius-8" id="save">报名</button>
                             </div>
                         </div>
-
                         <div class="checked">
-                            <form id="form">
+                            <form id="form2">
                                 <div class="box xiangmu">
-                                    <label zoom="2"><input type="checkbox" class="fill"  value="0"  id="c_2" checked/> &nbsp;二阶</label>&nbsp;
-                                    <label zoom="2"><input type="checkbox" class="fill"  value="0"  id="c_3" checked/> &nbsp;三阶</label>&nbsp;
-                                    <label zoom="2"><input type="checkbox" class="fill"  value="0"  id="c_4" checked/> &nbsp;四阶</label>
-                                    <br>
-                                    <label zoom="2"><input type="checkbox" class="fill"  value="0"  id="c_sk" checked/> &nbsp;斜转</label>&nbsp;
-                                    <label zoom="2"><input type="checkbox" class="fill"  value="0"  id="c_py" checked/> &nbsp;塔</label>&nbsp;
+                                        <label zoom="2" v-show="isShow2('e222')"><input checked disabled="disabled" type="checkbox"  value="1"  name="e222"/> &nbsp;二阶</label>&nbsp;
+                                        <label zoom="2" v-show="isShow2('e333')"><input checked disabled="disabled" type="checkbox"  value="1"  name="e333"/> &nbsp;三阶</label>&nbsp;
+                                        <label zoom="2" v-show="isShow2('e444')"><input checked disabled="disabled" type="checkbox"  value="1"  name="e444"/> &nbsp;四阶</label>&nbsp;
+                                        <label zoom="2" v-show="isShow2('e555')"><input checked disabled="disabled" type="checkbox"  value="1"  name="e555"/> &nbsp;五阶</label>&nbsp;
+                                        <label zoom="2" v-show="isShow2('e666')"><input checked disabled="disabled" type="checkbox"  value="1"  name="e666"/> &nbsp;六阶</label>&nbsp;
+                                        <label zoom="2" v-show="isShow2('e777')"><input checked disabled="disabled" type="checkbox"  value="1"  name="e777"/> &nbsp;七阶</label>&nbsp;
+                                        <label zoom="2" v-show="isShow2('e333bf')"><input checked disabled="disabled"  type="checkbox"  value="1"  name="e333bf"/> &nbsp;三盲</label>&nbsp;
+                                        <label zoom="2" v-show="isShow2('e333oh')"><input checked disabled="disabled"  type="checkbox"  value="1"  name="e333oh"/> &nbsp;三单</label>&nbsp;
+                                        <label zoom="2" v-show="isShow2('e333fm')"><input checked disabled="disabled"  type="checkbox"  value="1"  name="e333fm"/> &nbsp;最少步</label>&nbsp;
+                                        <label zoom="2" v-show="isShow2('eclock')"><input checked disabled="disabled"  type="checkbox"  value="1"  name="eclock"/> &nbsp;魔表</label>&nbsp;
+                                        <label zoom="2" v-show="isShow2('eminx')"><input  checked disabled="disabled" type="checkbox"  value="1"  name="eminx"/> &nbsp;五魔方</label>&nbsp;
+                                        <label zoom="2" v-show="isShow2('epyram')"><input checked disabled="disabled"  type="checkbox"  value="1"  name="epyram"/> &nbsp;金字塔</label>&nbsp;
+                                        <label zoom="2" v-show="isShow2('eskewb')"><input checked disabled="disabled"  type="checkbox"  value="1"  name="eskewb"/> &nbsp;斜转</label>&nbsp;
+                                        <label zoom="2" v-show="isShow2('esq1')"><input  checked disabled="disabled"type="checkbox"  value="1"  name="esq1"/> &nbsp;sq1</label>&nbsp;
+                                        <label zoom="2" v-show="isShow2('e444bf')"><input checked disabled="disabled" type="checkbox"  value="1"  name="e444bf"/> &nbsp;四盲</label>&nbsp;
+                                        <label zoom="2" v-show="isShow2('e555bf')"><input  checked disabled="disabled"type="checkbox"  value="1"  name="e555bf"/> &nbsp;五盲</label>&nbsp;
+                                        <label zoom="2" v-show="isShow2('e333mbf')"><input checked disabled="disabled" type="checkbox"  value="1"  name="e333mbf"/> &nbsp;三阶多盲</label>&nbsp;
                                 </div>
                             </form>
                             <div class="submit">
-                                <button class="button blue radius-8">确定</button>
+                                <button class="button blue radius-8">暂不支持退赛，快去练习把！</button>
                             </div>
                         </div>
 
@@ -125,8 +145,77 @@
             </div>
         </div>
     </div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
-    <script>
+<script>
+        $(function(){
+            $("#save").click(function(){
+                console.log($("#form1").serialize());
+            });
+        });
+    </script>
+<script>
+new Vue({
+    el: ".list-content",
+    data: {
+        apply:{},
+        competition:{},
+    },
+    mounted: function() {
+        if(this.getUrlParam("pId") != null) {
+            this.checkGame();
+        }
+        this.manageGame();
+    },
+    methods: {
+        getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+            var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+            if (r != null) return decodeURI(r[2]); return null; //返回参数值
+        },
+        checkGame: function() {
+            var _this = this;
+            //查询报名情况
+            axios.get("http://cube-online.lstf666.cn:8083/Cube-Online/player/queryEvents?cId="+this.getUrlParam("cId")+"&pId="+this.getUrlParam("pId")+"").then(
+                function(response) {
+                    _this.apply = response.data.apply;
+                    console.log(response.data.apply);
+                }
+            ).catch(
+                function(error) {
+                    console.log("发生了错误：" + error);
+                })
+            },
+        manageGame() {
+            var _this = this;
+            //查询比赛项目开设情况
+            axios.get("http://cube-online.lstf666.cn:8083/Cube-Online/admin/manage?cId="+this.getUrlParam("cId")+"")
+                .then(function(res){
+                    _this.competition = res.data.data;
+                console.log(res);
+            },function(err){
+                console.log(err);
+            })
+            } ,
+        isShow1(event) {
+            //展示开设 且 未报名
+            if(this.competition[event] != '0' && this.apply[event] == '0') {
+                return true;
+            }
+            return false;
+        },
+        isShow2(event) {
+            //展示报名项目
+            if(this.apply[event] == '1') {
+                return true;
+            }
+            return false;
+        },
+    }
+})
+</script>
+<script>
         javaex.tab({
             id: "tab", // tab的id
             current: 1, // 默认选中第几个选项卡
@@ -138,33 +227,5 @@
             }
         });
     </script>
-
-    <script>
-        $(function() {
-            $(".fill").click(function() {
-                if (this.value == 0) {
-                    this.value = 1;
-                } else {
-                    this.value = 0;
-                }
-            })
-            $(".button").click(function() {
-                $.ajax({
-                    url: 'contestant//apply_json',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: '{"username":"${username}","c_2":' + $("#c_2").val() + ',"c_3":' + $("#c_3").val() + ',"c_4":' + $("#c_4").val() + ',"c_oh":' + $("#c_oh").val() + ',"c_sk":' + $("#c_sk").val() + ',"c_py":' + $("#c_py").val() + '}',
-                    contentType: 'application/json;charset=utf-8',
-                    success: function(res) {
-                        if (res.type === 'success') {
-                            alert("报名成功");
-                            window.location.href = 'contestant/center?name=${name}';
-                        }
-                    }
-                })
-            })
-        })
-    </script>
 </body>
-
 </html>
