@@ -72,55 +72,34 @@
             
             <!--正文内容-->
             <div class="main">
-                <select id="liandong1">
+                <select id="select1" style="padding: 6px" @mouseleave="leave()">
                         <option value="">请选择项目</option>
-                        <option value="1">三阶</option>
-                        <option value="2">二阶</option>
-                    </select>
-                    <select id="liandong2">
-                            
-                    </select>
-                    
-                    <script>
-                        javaex.select({
-                            id : "liandong1",
-                            // 回调函数
-                            callback: function (rtn) {
-                                console.log("selectValue:" + rtn.selectValue);
-                                console.log("selectName:" + rtn.selectName);
-                                
-                                var html = '';
-                                if (rtn.selectValue=="1") {
-                                    html += '<option value="WX">请选择轮次</option>';
-                                    html += '<option value="WX">1</option>';
-                                    html += '<option value="NJ">2</option>';
-                                    html += '<option value="NJ">3</option>';
-                                } else if (rtn.selectValue=="2") {
-                                    html += '<option value="WX">请选择轮次</option>';
-                                    html += '<option value="HF">1</option>';
-                                    html += '<option value="HN">2</option>';
-                                }
-                    
-                                $("#liandong2").empty();
-                                $("#liandong2").append(html);
-                                
-                                javaex.select({
-                                    id : "liandong2",
-                                    // 回调函数
-                                    callback: function (rtn) {
-                                        console.log("selectValue:" + rtn.selectValue);
-                                        console.log("selectName:" + rtn.selectName);
-                                    }
-                                });
-                            }
-                        });
-                    
-                        javaex.select({
-                            id : "liandong2"
-                        });
-                    </script>
+                        <option v-show="isShowEvents('e222')" value="e222">二阶</option>
+                        <option v-show="isShowEvents('e333')" value="e333">三阶</option>
+                        <option v-show="isShowEvents('e444')" value="e444">四阶</option>
+                        <option v-show="isShowEvents('e555')" value="e555">五阶</option>
+                        <option v-show="isShowEvents('e666')" value="e666">六阶</option>
+                        <option v-show="isShowEvents('e777')" value="e777">七阶</option>
+                        <option v-show="isShowEvents('e333bf')" value="e333oh">三阶单手</option>
+                        <option v-show="isShowEvents('e333oh')" value="e333bf">三阶盲拧</option>
+                        <option v-show="isShowEvents('e333fm')" value="e333fm">最少步</option>
+                        <option v-show="isShowEvents('eclock')" value="eclock">魔表</option>
+                        <option v-show="isShowEvents('eminx')" value="eminx">五魔方</option>
+                        <option v-show="isShowEvents('epyram')" value="epyram">金字塔</option>
+                        <option v-show="isShowEvents('eskewb')" value="eskewb">斜转</option>
+                        <option v-show="isShowEvents('esq1')" value="esq1">sq1</option>
+                        <option v-show="isShowEvents('e444bf')" value="e444bf">四盲</option>
+                        <option v-show="isShowEvents('e555bf')" value="e555bf">五盲</option>
+                        <option v-show="isShowEvents('e333mbf')" value="e333mbf">三阶多盲</option>
+                </select>
+                <select id="select2" style="padding: 6px"@mouseleave="query()" >
+                        <option value="">请选择轮次</option>
+                        <option v-show="isShowRounds(this.event,'1')" value="1">1</option>
+                        <option v-show="isShowRounds(this.event,'2')" value="2">2</option>
+                        <option v-show="isShowRounds(this.event,'3')" value="3">3</option>
+                        <option v-show="isShowRounds(this.event,'4')" value="4">4</option>
+                </select>
                 <!--表格上方的操作元素，添加、删除等-->
-        
                 <table id="table" class="table color2" style="margin-top: 10px">
                     <thead>
                         <tr>
@@ -137,23 +116,81 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>12</td>
-                            <td>廖涛</td>
-                            <td>14</td>
-                            <td>14</td>
-                            <td>14</td>
-                            <td>14</td>
-                            <td>14</td>
-                            <td>14</td>
-                            <td>14</td>
+                        <tr v-for="(item,index) in results">
+                            <td>{{index + 1}}</td>
+                            <td>{{item.pId}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.single}}</td>
+                            <td>{{item.avg}}</td>
+                            <td>{{item.t1}}</td>
+                            <td>{{item.t2}}</td>
+                            <td>{{item.t3}}</td>
+                            <td>{{item.t4}}</td>
+                            <td>{{item.t5}}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-
 </body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+new Vue({
+    el: ".list-content",
+    data: {
+        competition:{},
+        results:[],
+        event:"",
+    },
+    mounted: function() {
+        this.checkGame();
+    },
+    methods: {
+        getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+            var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+            if (r != null) return decodeURI(r[2]); return null; //返回参数值
+        },
+        checkGame() {
+            var that = this;
+            axios.get("http://cube-online.lstf666.cn:8083/Cube-Online/admin/manage?cId="+this.getUrlParam("cId")+"")
+                .then(function(res){
+                    that.competition = res.data.data;
+                console.log(res);
+            },function(err){
+                console.log(err);
+            })
+        },
+        isShowEvents(event) {
+            //展示开设
+            if(this.competition[event] != '0') {
+                return true;
+            }
+            return false;
+        },
+        isShowRounds(event,rounds) {
+            if(this.competition[event] >= rounds) {
+                return true;
+            }
+            return false;
+        },
+        query(){
+            var that = this;
+            axios.get("http://cube-online.lstf666.cn:8083/Cube-Online/player/queryAllResult?cId="+that.getUrlParam("cId")+"&event="+that.event+"&rounds="+$("#select2 option:selected").val()+"")
+                .then(function(res){
+                that.results = res.data.data
+                console.log(res.data.data);
+            },function(err){
+                console.log(err);
+            })
+        },
+        leave() {
+            var that = this;
+            that.event = $("#select1 option:selected").val();
+        }
+    }
+})    
+</script>
 </html>
