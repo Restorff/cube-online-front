@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>添加选手</title>
     <!--字体图标-->
@@ -98,7 +97,7 @@
                 formser += "&cId=" + cId + "&event=" + event + "&rounds=" + rounds
                 console.log(formser);
 
-                axios.post("http://localhost:8084/admin/add", formser).then(
+/*                 axios.post("http://localhost:8084/admin/add", formser).then(
                     function(res) {
                         console.log(res);
                         alert("mm")
@@ -115,24 +114,40 @@
                         console.log("发生了错误: " + error);
 
                     }
-                )
-
-                // $.ajax({
-                //     url: 'contestant/save222',
-                //     data: '{"cid":' + cid + ',"name":"' + $("#name").val() + '","rounds":${rounds},"event":${event},"t1":' + $("#t1").val() + ',"t2":' + $("#t2").val() + ',"t3":' + $("#t3").val() + ',"t4":' + $("#t4").val() + ',"t5":' + $("#t5").val() + '}',
-                //     type: 'POST',
-                //     dataType: 'json',
-                //     contentType: 'application/json;charset=utf-8',
-                //     success: function(res) {
-                //         if (res.type == 'success') {
-                //             location.reload();
-                //             parent.javaex.close();
-                //             parent.window.location.reload();
-                //         } else {
-                //             alert(res.msg)
-                //         }
-                //     }
-                // })
+                ) */
+                $.ajax({
+                    url: 'http://localhost:8084/admin/add',
+                    data: formser,
+                    type: 'GET',
+                    dataType: 'json',
+                    async:false,
+                    contentType: 'application/json;charset=utf-8',
+                    success: function(res) {
+                        if (res.type == 'success') {
+                            location.reload();
+                            parent.javaex.close();
+                            parent.window.location.reload();
+                        } else {
+                            alert(res.msg)
+                        }
+                    },
+                })
+/*                 $.ajax({
+                    url: 'contestant/save222',
+                    data: '{"cid":' + cid + ',"name":"' + $("#name").val() + '","rounds":${rounds},"event":${event},"t1":' + $("#t1").val() + ',"t2":' + $("#t2").val() + ',"t3":' + $("#t3").val() + ',"t4":' + $("#t4").val() + ',"t5":' + $("#t5").val() + '}',
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: 'application/json;charset=utf-8',
+                    success: function(res) {
+                        if (res.type == 'success') {
+                            location.reload();
+                            parent.javaex.close();
+                            parent.window.location.reload();
+                        } else {
+                            alert(res.msg)
+                        }
+                    }
+                }) */
             },
             getQueryVariable(variable) {
                 let query = window.location.search.substring(1);
