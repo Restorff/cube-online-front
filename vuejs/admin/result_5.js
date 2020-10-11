@@ -62,11 +62,11 @@ new Vue({
         // },
         deleteOneScore(rId) {
             // var rId = 3
-            alert(rId)
+            // alert(rId)
             var _this = this;
             axios.post("http://localhost:8084/admin/delete?rId=" + rId).then(
                 function(response) {
-                    console.log(response.data.rounds);
+                    // console.log(response.data.rounds);
 
                     _this.rounds = response.data.rounds;
                     location.reload();
