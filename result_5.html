@@ -27,20 +27,20 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 <div class="list-content ">
-    <div class="block">
-        <h2><span class="event "></span>第轮</h2>
+    <div class="block" v-for="n in rounds">
+        <h2><span class="rounds"></span>第{{n}}轮</h2>
         <div class="main ">
             <div class="operation-wrap ">
                 <div class="buttons-wrap ">
-                    <button class="button blue radius-3 add_3 " value="3 "><span class="icon-plus "></span> 添加</button>
-                    <button class="button red radius-3 delete " value="3 "><span class="icon-close2 "></span> 删除</button>
-                    <button class="button green radius-3 update " value="3"><span class="icon-check2 "></span>修改</button>
+                    <button class="button blue radius-3 add_3 " value="3 " @click="addOneScore(n)"><span class="icon-plus "></span> 添加</button>
+                    <!-- <button class="button red radius-3 delete " value="3 "><span class="icon-close2 "></span> 删除</button>
+                    <button class="button green radius-3 update " value="3"><span class="icon-check2 "></span>修改</button> -->
                 </div>
             </div>
             <table id="table_3 " class="table color2 th-center td-center">
                 <thead>
                     <tr>
-                        <th class="checkbox"><input type="checkbox" class="fill listen-3" value="" /> </th>
+                        <!-- <th><input type="checkbox" class="javaex-fill listen-3" value=" " /> </th> -->
                         <th>排名</th>
                         <th>id</th>
                         <th>选手</th>
@@ -51,22 +51,33 @@
                         <th>详情3</th>
                         <th>详情4</th>
                         <th>详情5</th>
+                        <th>修改</th>
+                        <th>删除</th>
                     </tr>
                 </thead>
 
                 <tbody class="list">
-                    <tr v-for="(item,index) in scoreList">
-                        <td class="checkbox"><input type="checkbox" class=" listen-3-2 c1" value="" /> </td>
+                    <tr v-for="(item,index) in scoreList[n-1]">
+                        <!-- <td><input type="checkbox" class="javaex-fill listen-3-2 c1 " :class="{checked:isChecked}" value=" " @click="addChecked" /> </td> -->
                         <td>{{ index+1 }}</td>
                         <td>{{ item.pId }}</td>
                         <td>{{ item.name }}</td>
                         <td>{{ item.single }}</td>
                         <td>{{ item.avg }}</td>
-                        <td>{{ item.t1 }}</td>
-                        <td>{{ item.t2 }}</td>
-                        <td>{{ item.t3 }}</td>
-                        <td>{{ item.t4 }}</td>
-                        <td>{{ item.t5 }}</td>
+                        <td v-if="item.t1 < 1000">{{ item.t1 }}</td>
+                        <td v-if="item.t1 >= 1000">DNF</td>
+                        <td v-if="item.t2 < 1000">{{ item.t2 }}</td>
+                        <td v-if="item.t2 >= 1000">DNF</td>
+                        <td v-if="item.t3 < 1000">{{ item.t3 }}</td>
+                        <td v-if="item.t3 >= 1000">DNF</td>
+                        <td v-if="item.t4 < 1000">{{ item.t4 }}</td>
+                        <td v-if="item.t4 >= 1000">DNF</td>
+                        <td v-if="item.t5 < 1000">{{ item.t5 }}</td>
+                        <td v-if="item.t5 >= 1000">DNF</td>
+                        <td> <button class="button green radius-3 update " value="3"><span class="icon-check2 "></span> 修改</button>
+                        </td>
+                        <td> <button class="button red radius-3 delete " value="3" @click="deleteOneScore(item.rId)"><span class="icon-close2 "></span> 删除</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
