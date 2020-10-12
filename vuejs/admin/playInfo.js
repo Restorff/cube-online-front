@@ -14,7 +14,7 @@ new Vue({
 
         getPlayerList(cId) {
             var _this = this;
-            axios.get("http://localhost:8084/admin/getPlayers?cId=" + cId).then(
+            axios.get("http://cube-online.lstf666.cn:8083/Cube-Online/admin/getPlayers?cId=" + cId).then(
                 function(response) {
                     // console.log(response.data.data);
                     _this.playerList = response.data.data
@@ -26,7 +26,7 @@ new Vue({
         },
         checkGame() {
             var _this = this;
-            axios.post("http://localhost:8084/admin/manage?cId=" + _this.cId).then(
+            axios.post("http://cube-online.lstf666.cn:8083/Cube-Online/admin/manage?cId=" + _this.cId).then(
                 function(response) {
                     // console.log(response);
                     _this.eventList = response.data.data

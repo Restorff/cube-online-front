@@ -54,7 +54,7 @@ new Vue({
                 //     return;
                 // }
             $.ajax({
-                url: 'http://localhost:8084/admin/add',
+                url: 'http://cube-online.lstf666.cn:8083/Cube-Online/admin/add',
                 data: formser,
                 type: 'GET',
                 dataType: 'json',

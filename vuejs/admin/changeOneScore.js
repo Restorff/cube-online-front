@@ -26,7 +26,7 @@ new Vue({
             var _this = this
 
             $.ajax({
-                url: 'http://localhost:8084/admin/getOneScore',
+                url: 'http://cube-online.lstf666.cn:8083/Cube-Online/admin/getOneScore',
                 data: {
                     rId: rId
                 },
@@ -110,7 +110,7 @@ new Vue({
                                 }
                             ) */
             $.ajax({
-                url: 'http://localhost:8084/admin/change',
+                url: 'http://cube-online.lstf666.cn:8083/Cube-Online/admin/change',
                 data: formser,
                 type: 'GET',
                 dataType: 'json',

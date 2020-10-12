@@ -5,7 +5,7 @@
               var _this = this;
               var formser = $('#form_register').serialize();
               // console.log(formser)
-              axios.post("http://localhost:8084/admin/register", formser).then(
+              axios.post("http://cube-online.lstf666.cn:8083/Cube-Online/admin/register", formser).then(
                   function(response) {
                       //   console.log(response);
                       if (response.data.type == "error") {

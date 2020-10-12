@@ -12,7 +12,7 @@ new Vue({
     },
     methods: {
         logout: function() {
-            axios.post("http://localhost:8084/admin/logout").then(
+            axios.post("http://cube-online.lstf666.cn:8083/Cube-Online/admin/logout").then(
                 function(response) {
                     sessionStorage.removeItem('username');
                     // console.log(response);
@@ -42,7 +42,7 @@ new Vue({
     methods: {
         checkGame() {
             var _this = this;
-            axios.post("http://localhost:8084/admin/manage?cId=" + _this.cId).then(
+            axios.post("http://cube-online.lstf666.cn:8083/Cube-Online/admin/manage?cId=" + _this.cId).then(
                 function(response) {
                     // console.log(response);
                     _this.eventList = response.data.data

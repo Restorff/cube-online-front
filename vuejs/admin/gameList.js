@@ -9,7 +9,7 @@ new Vue({
     methods: {
         checkGame: function() {
             var _this = this;
-            axios.post("http://localhost:8084/admin/checkGame").then(
+            axios.post("http://cube-online.lstf666.cn:8083/Cube-Online/admin/checkGame").then(
                 function(response) {
                     _this.gameList = response.data.data
                         // console.log(response);

@@ -38,7 +38,7 @@ new Vue({
             var _this = this;
             // console.log("---------" + _this.rounds);
 
-            axios.post("http://localhost:8084/admin/getScores?cId=" + _this.cId + "&event=" + _this.event).then(
+            axios.post("http://cube-online.lstf666.cn:8083/Cube-Online/admin/getScores?cId=" + _this.cId + "&event=" + _this.event).then(
                 function(response) {
                     _this.scoreList = response.data.scoreList
                         // console.log(response);
@@ -50,7 +50,7 @@ new Vue({
         },
         getRounds() {
             var _this = this;
-            axios.post("http://localhost:8084/admin/getRounds?cId=" + _this.cId + "&event=" + _this.event).then(
+            axios.post("http://cube-online.lstf666.cn:8083/Cube-Online/admin/getRounds?cId=" + _this.cId + "&event=" + _this.event).then(
                 function(response) {
                     // console.log(response.data.rounds);
 
@@ -72,7 +72,7 @@ new Vue({
             // console.log(_this);
             // alert("即将删除")
             if (flag) {
-                axios.post("http://localhost:8084/admin/delete?rId=" + rId).then(
+                axios.post("http://cube-online.lstf666.cn:8083/Cube-Online/admin/delete?rId=" + rId).then(
                     function(response) {
                         // console.log(response.data.rounds);
 
