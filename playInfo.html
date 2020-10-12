@@ -1,0 +1,110 @@
+<!--字体图标-->
+<link href="javaex/pc/css/icomoon.css" rel="stylesheet" />
+<!--动画-->
+<link href="javaex/pc/css/animate.css" rel="stylesheet" />
+<!--骨架样式-->
+<link href="javaex/pc/css/common.css" rel="stylesheet" />
+<!--皮肤（缇娜）-->
+<link href="javaex/pc/css/skin/tina.css" rel="stylesheet" />
+<!--jquery，不可修改版本-->
+<script src="javaex/pc/lib/jquery-1.7.2.min.js"></script>
+<!--全局动态修改-->
+<script src="javaex/pc/js/common.js"></script>
+<!--核心组件-->
+<script src="javaex/pc/js/javaex.min.js"></script>
+<!--表单验证-->
+<script src="javaex/pc/js/javaex-formVerify.js"></script>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<!--主体内容-->
+<div class="list-content">
+    <div class="list">
+        <!--表格1-->
+        <div class="block">
+            <h2>选手信息</h2>
+            <div class="main">
+                <table id="table" class="table color2 th-center td-center">
+                    <thead>
+                        <tr>
+                            <!-- <th class="checkbox"><input type="checkbox" class="fill listen-1" /> </th> -->
+                            <th>id</th>
+                            <th>姓名</th>
+                            <th>用户名</th>
+                            <th>密码</th>
+                            <th>邮箱</th>
+                            <th>激活状态</th>
+                            <th v-if="eventList.e222    >   0">二阶 </th>
+                            <th v-if="eventList.e333    >   0">三阶 </th>
+                            <th v-if="eventList.e444    >   0">四阶 </th>
+                            <th v-if="eventList.e555     >   0">五阶 </th>
+                            <th v-if="eventList.e666    >   0">六阶 </th>
+                            <th v-if="eventList.e777    >   0">七阶 </th>
+                            <th v-if="eventList.e333oh > 0">三单 </th>
+                            <th v-if="eventList.e333bf > 0">三盲 </th>
+                            <th v-if="eventList.e333fm > 0">最少步 </th>
+                            <th v-if="eventList.eminx   >  0">五魔方 </th>
+                            <th v-if="eventList.e444bf > 0">四阶盲 </th>
+                            <th v-if="eventList.e555bf > 0">五阶盲 </th>
+                            <th v-if="eventList.eskewb > 0">斜转 </th>
+                            <th v-if="eventList.epyram > 0">金字塔 </th>
+                            <th v-if="eventList.eclock > 0">魔表 </th>
+                            <th v-if="eventList.eSQ1    >   0">SQ1 </th>
+                            <th v-if="eventList.e333mbf > 0">多盲 </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(item,index) in playerList">
+                            <!-- <td class="checkbox"><input type="checkbox" class="fill listen-1-2" id="c1" value="${item.id}" /> </td> -->
+                            <td>{{item.player.pId}}</td>
+                            <td>{{item.player.name}}</td>
+                            <td>{{item.player.username}}</td>
+                            <td>{{item.player.password}}</td>
+                            <td>{{item.player.email}}</td>
+                            <td>{{item.player.status}}</td>
+                            <!--  这里如此复杂的原因是要匹配表格的数目和比赛所开的项目一致对齐，不然会错位-->
+                            <td v-if="eventList.e222 >   0 && item.apply.e222 > 0"><span class="icon-check2"></span> </td>
+                            <td v-if="eventList.e222 >   0 && item.apply.e222 == 0"> </td>
+                            <td v-if="eventList.e333 >   0 && item.apply.e333   > 0"><span class="icon-check2"></span> </td>
+                            <td v-if="eventList.e333 >   0 && item.apply.e333   == 0"> </td>
+                            <td v-if="eventList.e444 >   0 && item.apply.e444   >   0"><span class="icon-check2"></span> </td>
+                            <td v-if="eventList.e444 >   0 && item.apply.e444  == 0"> </td>
+                            <td v-if="eventList.e555 > 0 && item.apply.e555   > 0"><span class="icon-check2"></span> </td>
+                            <td v-if="eventList.e555 > 0 && item.apply.e555   == 0"> </td>
+                            <td v-if="eventList.e666 > 0 && item.apply.e666   > 0"><span class="icon-check2"></span> </td>
+                            <td v-if="eventList.e666 >  0 && item.apply.e666  == 0"> </td>
+                            <td v-if="eventList.e777 > 0 && item.apply.e777    > 0"><span class="icon-check2"></span> </td>
+                            <td v-if="eventList.e777 > 0 && item.apply.e777   == 0"> </td>
+                            <td v-if="eventList.e333oh > 0 && item.apply.e333oh > 0"><span class="icon-check2"></span> </td>
+                            <td v-if="eventList.e333oh > 0 && item.apply.e333oh == 0"> </td>
+                            <td v-if="eventList.e333bf > 0 && item.apply.e333bf > 0"><span class="icon-check2"></span> </td>
+                            <td v-if="eventList.e333bf >   0 && item.apply.e333bf == 0"> </td>
+                            <td v-if="eventList.e333fm> 0 && item.apply.e333fm > 0"><span class="icon-check2"></span></td>
+                            <td v-if="eventList.e333fm >   0 && item.apply.e333fm == 0"> </td>
+                            <td v-if="eventList.eminx >   0 && item.apply.eminx  > 0"><span class="icon-check2"></span></td>
+                            <td v-if="eventList.eminx >   0 && item.apply.eminx  == 0"> </td>
+                            <td v-if="eventList.e444bf >   0 && item.apply.e444bf > 0"><span class="icon-check2"></span></td>
+                            <td v-if="eventList.e444bf >   0 && item.apply.e444bf == 0"> </td>
+                            <td v-if="eventList.e555bf >   0 && item.apply.e555bf > 0"><span class="icon-check2"></span></td>
+                            <td v-if="eventList.e555bf > 0 && item.apply.e555bf == 0"> </td>
+                            <td v-if="eventList.eskewb > 0 && item.apply.eskewb > 0"><span class="icon-check2"></span> </td>
+                            <td v-if="eventList.eskewb > 0 && item.apply.eskewb == 0"> </td>
+                            <td v-if="eventList.epyram >  0 && item.apply.epyram > 0"><span class="icon-check2"></span></td>
+                            <td v-if="eventList.epyram > 0 && item.apply.epyram == 0"> </td>
+                            <td v-if="eventList.eclock > 0 && item.apply.eclock > 0"><span class="icon-check2"></span> </td>
+                            <td v-if="eventList.eclock > 0 && item.apply.eclock == 0"> </td>
+                            <td v-if="eventList.eSQ1 > 0 && item.apply.eSQ1    > 0"><span class="icon-check2"></span> </td>
+                            <td v-if="eventList.eSQ1 > 0 && item.apply.eSQ1   == 0"> </td>
+                            <td v-if="eventList.e333mbf >   0 && item.apply.e333mbf > 0"><span class="icon-check2"></span> </td>
+                            <td v-if="eventList.e333mbf> 0 && item.apply.e333mbf == 0"> </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--表格2-->
+    </div>
+</div>
+<script src="vuejs/admin/playInfo.js"></script>

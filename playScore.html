@@ -1,0 +1,96 @@
+<!--字体图标-->
+<link href="javaex/pc/css/icomoon.css" rel="stylesheet" />
+<!--动画-->
+<link href="javaex/pc/css/animate.css" rel="stylesheet" />
+<!--骨架样式-->
+<link href="javaex/pc/css/common.css" rel="stylesheet" />
+<!--皮肤（缇娜）-->
+<link href="javaex/pc/css/skin/tina.css" rel="stylesheet" />
+<!--jquery，不可修改版本-->
+<script src="javaex/pc/lib/jquery-1.7.2.min.js"></script>
+<!--全局动态修改-->
+<script src="javaex/pc/js/common.js"></script>
+<!--核心组件-->
+<script src="javaex/pc/js/javaex.min.js"></script>
+<!--表单验证-->
+<script src="javaex/pc/js/javaex-formVerify.js"></script>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<div class="list">
+    <!--表格2-->
+    <div class="list2">
+        <div class="block" v-for="(item,index) in playerList">
+            <h2>选手成绩 -- {{item.player.name}}</h2>
+            <div class="main">
+                <table id="table" class="table color2 th-center td-center">
+                    <thead>
+                        <tr>
+                            <!-- <th class="checkbox"><input type="checkbox" class="fill listen-1" /> </th> -->
+                            <th>id</th>
+                            <th>姓名</th>
+                            <th>项目</th>
+                            <th>轮次</th>
+                            <th>单次</th>
+                            <th>平均</th>
+                            <th>详情1</th>
+                            <th>详情2</th>
+                            <th>详情3</th>
+                            <th>详情4</th>
+                            <th>详情5</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(item,index) in item.result5">
+                            <!-- <td class="checkbox"><input type="checkbox" class="fill listen-1-2" id="c1" value="${item.id}" /> </td> -->
+                            <td>{{item.pId}}</td>
+                            <td>{{item.name}}</td>
+                            <td v-if="item.event=='e222'">二阶 </td>
+                            <td v-if="item.event=='e333'">三阶 </td>
+                            <td v-if="item.event=='e444'">四阶 </td>
+                            <td v-if="item.event=='e555'">五阶 </td>
+                            <td v-if="item.event=='e666'">六阶 </td>
+                            <td v-if="item.event=='e777'">七阶 </td>
+                            <td v-if="item.event=='e333oh'">三单 </td>
+                            <td v-if="item.event=='e333bf'">三盲 </td>
+                            <td v-if="item.event=='e333fm'">最少步</td>
+                            <td v-if="item.event=='eminx'">五魔方</td>
+                            <td v-if="item.event=='e444bf'">四阶盲</td>
+                            <td v-if="item.event=='e555bf'">五阶盲</td>
+                            <td v-if="item.event=='eskewb'">斜转 </td>
+                            <td v-if="item.event=='epyram'">金字塔</td>
+                            <td v-if="item.event=='eclock'">魔表 </td>
+                            <td v-if="item.event=='eSQ1'">SQ1 </td>
+                            <td v-if="item.event=='e333mbf'">多盲 </td>
+                            <td>{{item.rounds}}</td>
+                            <td>{{item.single}}</td>
+                            <td v-if="item.avg < 4000">{{ item.avg }}</td>
+                            <td v-if="item.avg >= 4000">DNF</td>
+                            <td v-if="item.t1 < 1000">{{ item.t1 }}</td>
+                            <td v-if="item.t1 >= 1000">DNF</td>
+                            <td v-if="item.t2 < 1000">{{ item.t2 }}</td>
+                            <td v-if="item.t2 >= 1000">DNF</td>
+                            <td v-if="item.t3 < 1000">{{ item.t3 }}</td>
+                            <td v-if="item.t3 >= 1000">DNF</td>
+                            <td v-if="item.t4 < 1000">{{ item.t4 }}</td>
+                            <td v-if="item.t4 >= 1000">DNF</td>
+                            <td v-if="item.t5 < 1000">{{ item.t5 }}</td>
+                            <td v-if="item.t5 >= 1000">DNF</td>
+                            <!--  这里如此复杂的原因是要匹配表格的数目和比赛所开的项目一致对齐，不然会错位-->
+
+                            <!-- <c222:if test="${item.c_2 == 1}">
+                    <td><span class="icon-check2"></span></td>
+                </c222:if>
+                <c222:if test="${item.c_2 == 0}">
+                    <td></td>
+                </c222:if> -->
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="vuejs/admin/playInfo.js"></script>
