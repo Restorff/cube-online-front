@@ -7,7 +7,7 @@ var form_login = new Vue({
             var _this = this;
             var formser = $('#form_login').serialize();
             // console.log(formser)
-            axios.post("http://localhost:8084/admin/login", formser).then(
+            axios.post("http://cube-online.lstf666.cn:8083/Cube-Online/admin/login", formser).then(
                 function(response) {
                     console.log(response);
                     if (response.data.type == "error") {

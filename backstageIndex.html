@@ -73,27 +73,31 @@
                             <li class="menu-item">
                                 <a href="javascript:;">所有项目<i class="icon-keyboard_arrow_left"></i></a>
                                 <ul class="list">
-                                    <li v-if="eventList.e222 > 0"><a href="javascript:page('result_5.html?event=e222');">二阶</a></li>
-                                    <li v-if="eventList.e333 > 0"><a href="javascript:page('result_5.html?event=e333');">三阶</a></li>
-                                    <li v-if="eventList.e444 > 0"><a href="javascript:page('result_5.html?event=e444');">四阶</a></li>
-                                    <li v-if="eventList.e555 > 0"><a href="javascript:page('result_5.html?event=e555');">五阶</a></li>
-                                    <li v-if="eventList.e666 > 0"><a href="javascript:page('result_5.html?event=e666');">六阶</a></li>
-                                    <li v-if="eventList.e777 > 0"><a href="javascript:page('result_5.html?event=e777');">七阶</a></li>
-                                    <li v-if="eventList.e333oh > 0"><a href="javascript:page('result_5.html?event=e333oh');">三单</a></li>
-                                    <li v-if="eventList.e333bf > 0"><a href="javascript:page('result_5.html?event=e333bf');">三盲</a></li>
-                                    <li v-if="eventList.e333fm > 0"><a href="javascript:page('result_5.html?event=e333fm');">最少步</a></li>
-                                    <li v-if="eventList.eminx > 0"><a href="javascript:page('result_5.html?event=eminx');">五魔方</a></li>
+                                    <li v-if="eventList.e222 >   0"><a href="javascript:page('result_5.html?event=e222');">  二阶    </a></li>
+                                    <li v-if="eventList.e333 >   0"><a href="javascript:page('result_5.html?event=e333');">  三阶    </a></li>
+                                    <li v-if="eventList.e444 >   0"><a href="javascript:page('result_5.html?event=e444');">  四阶    </a></li>
+                                    <li v-if="eventList.e555 >   0"><a href="javascript:page('result_5.html?event=e555');">  五阶    </a></li>
+                                    <li v-if="eventList.e666 >   0"><a href="javascript:page('result_5.html?event=e666');">  六阶    </a></li>
+                                    <li v-if="eventList.e777 >   0"><a href="javascript:page('result_5.html?event=e777');">  七阶    </a></li>
+                                    <li v-if="eventList.e333oh > 0"><a href="javascript:page('result_5.html?event=e333oh');">三单   </a></li>
+                                    <li v-if="eventList.e333bf > 0"><a href="javascript:page('result_5.html?event=e333bf');">三盲   </a></li>
+                                    <li v-if="eventList.e333fm > 0"><a href="javascript:page('result_5.html?event=e333fm');">最少步 </a></li>
+                                    <li v-if="eventList.eminx >  0"><a href="javascript:page('result_5.html?event=eminx');"> 五魔方 </a></li>
                                     <li v-if="eventList.e444bf > 0"><a href="javascript:page('result_5.html?event=e444bf');">四阶盲拧</a></li>
                                     <li v-if="eventList.e555bf > 0"><a href="javascript:page('result_5.html?event=e555bf');">五阶盲拧</a></li>
-                                    <li v-if="eventList.eskewb > 0"><a href="javascript:page('result_5.html?event=eskewb');">斜转</a></li>
-                                    <li v-if="eventList.epyram > 0"><a href="javascript:page('result_5.html?event=epyram');">金字塔</a></li>
-                                    <li v-if="eventList.eclock > 0"><a href="javascript:page('result_5.html?event=eclock');">魔表</a></li>
-                                    <li v-if="eventList.eSQ1 > 0"><a href="javascript:page('result_5.html?event=eSQ1');">SQ1</a></li>
-                                    <li v-if="eventList.e333mbf > 0"><a href="javascript:page('result_5.html?event=e333mbf');">多盲</a></li>
+                                    <li v-if="eventList.eskewb > 0"><a href="javascript:page('result_5.html?event=eskewb');">斜转   </a></li>
+                                    <li v-if="eventList.epyram > 0"><a href="javascript:page('result_5.html?event=epyram');">金字塔 </a></li>
+                                    <li v-if="eventList.eclock > 0"><a href="javascript:page('result_5.html?event=eclock');">魔表   </a></li>
+                                    <li v-if="eventList.eSQ1 >   0"><a href="javascript:page('result_5.html?event=eSQ1');">  SQ1    </a></li>
+                                    <li v-if="eventList.e333mbf> 0"><a href="javascript:page('result_5.html?event=e333mbf');">多盲 </a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="menu-item ">
-                                <a href="javascript:page('${pageContext.request.contextPath}/contestant/list_con');">选手信息</a>
+                                <a href="javascript:page('playInfo.html');">选手信息</a>
+                            </li>
+                            <li class="menu-item ">
+                                <a href="javascript:page('playScore.html');">选手成绩</a>
                             </li>
                         </ul>
                     </div>

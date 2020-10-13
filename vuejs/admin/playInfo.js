@@ -1,45 +1,29 @@
 new Vue({
-    el: ".admin-navbar",
+    el: ".list",
     data: {
-        username: "",
-        cId: "",
+        cId: 0,
+        playerList: [],
+        eventList: [],
     },
     mounted: function() {
-        this.username = sessionStorage.getItem('username');
-        // alert(this.username);
-        // alert(cId)
-        // this.checkGame();
+        this.cId = sessionStorage.getItem('cId')
+        this.checkGame();
+        this.getPlayerList(this.cId);
     },
     methods: {
-        logout: function() {
-            axios.post("http://cube-online.lstf666.cn:8083/Cube-Online/admin/logout").then(
+
+        getPlayerList(cId) {
+            var _this = this;
+            axios.get("http://cube-online.lstf666.cn:8083/Cube-Online/admin/getPlayers?cId=" + cId).then(
                 function(response) {
-                    sessionStorage.removeItem('username');
-                    // console.log(response);
-                    window.location.href = "/adminLogin.html";
+                    // console.log(response.data.data);
+                    _this.playerList = response.data.data
                 }
             ).catch(
                 function(error) {
                     console.log("发生了错误：" + error);
                 })
         },
-
-    },
-
-})
-
-new Vue({
-    el: ".list",
-    data: {
-        cId: "",
-        eventList: [],
-        scoreList: [],
-    },
-    mounted: function() {
-        this.cId = sessionStorage.getItem("cId");
-        this.checkGame();
-    },
-    methods: {
         checkGame() {
             var _this = this;
             axios.post("http://cube-online.lstf666.cn:8083/Cube-Online/admin/manage?cId=" + _this.cId).then(
@@ -52,5 +36,6 @@ new Vue({
                     console.log("发生了错误：" + error);
                 })
         },
+
     }
 })

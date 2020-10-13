@@ -37,23 +37,20 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 <body>
-    <form id="form_add">
-        <input type="text" class="text" name="pId" id="pId" placeholder="选手id" autocomplete="off" />
-        <input type="text" class="text" name="name" id="name" placeholder="请输入选手姓名" autocomplete="off" />(id和姓名输入一项即可)
+    <form id="form_change">
+        <input type="text" class="text" name="pId" id="pId" placeholder="选手id" autocomplete="off" :value="result_5.pId" />
+        <input type="text" class="text" name="name" id="name" placeholder="请输入选手姓名" autocomplete="off" :value="result_5.name" />(id和姓名输入一项即可)
         <br>
-        <input type="text" class="text t" name="t1" id="t1" placeholder="请输入成绩" autocomplete="off" />
-        <input type="text" class="text t" name="t2" id="t2" placeholder="请输入成绩" autocomplete="off" />
-        <input type="text" class="text t" name="t3" id="t3" placeholder="请输入成绩" autocomplete="off" />
-        <input type="text" class="text t" name="t4" id="t4" placeholder="请输入成绩" autocomplete="off" />
-        <input type="text" class="text t" name="t5" id="t5" placeholder="请输入成绩" autocomplete="off" />
+        <input type="text" class="text t" name="t1" id="t1" placeholder="请输入成绩" autocomplete="off" :value="result_5.t1" />
+        <input type="text" class="text t" name="t2" id="t2" placeholder="请输入成绩" autocomplete="off" :value="result_5.t2" />
+        <input type="text" class="text t" name="t3" id="t3" placeholder="请输入成绩" autocomplete="off" :value="result_5.t3" />
+        <input type="text" class="text t" name="t4" id="t4" placeholder="请输入成绩" autocomplete="off" :value="result_5.t4" />
+        <input type="text" class="text t" name="t5" id="t5" placeholder="请输入成绩" autocomplete="off" :value="result_5.t5" />
         <br>
         <button class="button green" style="margin-left: 10px" @click="commit">提交</button>
-
-        <!-- <button class="button green" style="margin-left: 10px" @click="commit">提交</button> -->
-        <!-- 1309 169 -->
     </form>
 </body>
-<script src="vuejs/admin/addOneScore.js"></script>
+<script src="vuejs/admin/changeOneScore.js"></script>
 
 
 </html>
