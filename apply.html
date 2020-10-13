@@ -173,60 +173,60 @@
             <button class="button blue" @click="save()">确定报名</button>
         </div>
     </div>
-    </form>
-    <div class="submit">
-        <button class="button blue" @click="save()">确定报名</button>
-    </div>
-</div>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script>
-new Vue({
-    el: ".main",
-    data: {
-        competition:{},
-        pId:""
-    },
-    mounted: function() {
-        this.manageGame();
-    },
-    methods: {
-        getUrlParam(name) {
-            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-            var r = window.location.search.substr(1).match(reg);  //匹配目标参数
-            if (r != null) return decodeURI(r[2]); return null; //返回参数值
-        },
-        manageGame() {
-            var _this = this;
-            //查询比赛项目开设情况
-            axios.get("http://cube-online.lstf666.cn:8083/Cube-Online/admin/manage?cId="+this.getUrlParam("cId")+"")
-                .then(function(res){
-                    _this.competition = res.data.data;
-                    _this.pId =_this.getUrlParam("pId")
-                console.log(res);
-            },function(err){
-                console.log(err);
-            })
-            } ,
-        isShow1(event) {
-        //展示开设 项目
-        if(this.competition[event] != '0') {
-            return true;
-        }
-        return false;
-        },
-        save() {
-            var pId = this.pId;
-            var data = $("#form").serialize();
-             axios.post("http://cube-online.lstf666.cn:8083/Cube-Online/player/chooseEvent",data).then(function(res){
-                if(res.data.type == 'success') {
-                    javaex.message({
-                        content : "报名成功！",
-                        type : "success"
-                    });
-                    setTimeout(function() {
-                        location.href="gameInfo.html?pId="+pId+""
-		}, 1000);
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: ".main",
+            data: {
+                competition: {},
+                pId: ""
+            },
+            mounted: function() {
+                this.manageGame();
+            },
+            methods: {
+                getUrlParam(name) {
+                    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+                    var r = window.location.search.substr(1).match(reg); //匹配目标参数
+                    if (r != null) return decodeURI(r[2]);
+                    return null; //返回参数值
+                },
+                manageGame() {
+                    var _this = this;
+                    //查询比赛项目开设情况
+                    axios.get("http://cube-online.lstf666.cn:8083/Cube-Online/admin/manage?cId=" + this.getUrlParam("cId") + "")
+                        .then(function(res) {
+                            _this.competition = res.data.data;
+                            _this.pId = _this.getUrlParam("pId")
+                                // console.log(res);
+                        }, function(err) {
+                            console.log(err);
+                        })
+                },
+                isShow1(event) {
+                    //展示开设 项目
+                    if (this.competition[event] != '0') {
+                        return true;
+                    }
+                    return false;
+                },
+                save() {
+                    var pId = this.pId;
+                    var data = $("#form").serialize();
+                    axios.post("http://cube-online.lstf666.cn:8083/Cube-Online/player/chooseEvent", data).then(function(res) {
+                        if (res.data.type == 'success') {
+                            javaex.message({
+                                content: "报名成功！",
+                                type: "success"
+                            });
+                            setTimeout(function() {
+                                location.href = "gameInfo.html?pId=" + pId + ""
+                            }, 1000);
+                        }
+                    }, function(err) {
+                        console.log(err);
+                    })
                 }
             }
         })
