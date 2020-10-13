@@ -62,18 +62,18 @@
                         <td>{{ index+1 }}</td>
                         <td>{{ item.pId }}</td>
                         <td>{{ item.name }}</td>
-                        <td>{{ item.single }}</td>
-                        <td v-if="item.avg < 4000">{{ item.avg }}</td>
+                        <td>{{ item.single.toFixed(2) }}</td>
+                        <td v-if="item.avg < 4000">{{ item.avg.toFixed(2) }}</td>
                         <td v-if="item.avg >= 4000">DNF</td>
-                        <td v-if="item.t1 < 1000">{{ item.t1 }}</td>
+                        <td v-if="item.t1 < 1000">{{ item.t1.toFixed(2) }}</td>
                         <td v-if="item.t1 >= 1000">DNF</td>
-                        <td v-if="item.t2 < 1000">{{ item.t2 }}</td>
+                        <td v-if="item.t2 < 1000">{{ item.t2.toFixed(2) }}</td>
                         <td v-if="item.t2 >= 1000">DNF</td>
-                        <td v-if="item.t3 < 1000">{{ item.t3 }}</td>
+                        <td v-if="item.t3 < 1000">{{ item.t3.toFixed(2) }}</td>
                         <td v-if="item.t3 >= 1000">DNF</td>
-                        <td v-if="item.t4 < 1000">{{ item.t4 }}</td>
+                        <td v-if="item.t4 < 1000">{{ item.t4.toFixed(2) }}</td>
                         <td v-if="item.t4 >= 1000">DNF</td>
-                        <td v-if="item.t5 < 1000">{{ item.t5 }}</td>
+                        <td v-if="item.t5 < 1000">{{ item.t5.toFixed(2) }}</td>
                         <td v-if="item.t5 >= 1000">DNF</td>
                         <td> <button class="button green radius-3 update " value="3" @click="changeOneScore(n,item.rId)"><span class="icon-check2 "></span> 修改</button>
                         </td>

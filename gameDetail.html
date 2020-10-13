@@ -214,7 +214,7 @@ new Vue({
         save(){
             // http://localhost:8084/player/addApply
             var data = $("#form1").serialize();
-            axios.post("http://cube-online.lstf666.cn:8083/Cube-Online/player/addApply",data)
+            axios.post("http://localhost:8084/player/addApply",data)
                 .then(function(res){
                     javaex.message({
                         content : "你的参赛信息已变更",

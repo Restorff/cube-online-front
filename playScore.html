@@ -63,18 +63,18 @@
                             <td v-if="item.event=='eSQ1'">SQ1 </td>
                             <td v-if="item.event=='e333mbf'">多盲 </td>
                             <td>{{item.rounds}}</td>
-                            <td>{{item.single}}</td>
-                            <td v-if="item.avg < 4000">{{ item.avg }}</td>
+                            <td>{{item.single.toFixed(2)}}</td>
+                            <td v-if="item.avg < 4000">{{ item.avg.toFixed(2) }}</td>
                             <td v-if="item.avg >= 4000">DNF</td>
-                            <td v-if="item.t1 < 1000">{{ item.t1 }}</td>
+                            <td v-if="item.t1 < 1000">{{ item.t1.toFixed(2) }}</td>
                             <td v-if="item.t1 >= 1000">DNF</td>
-                            <td v-if="item.t2 < 1000">{{ item.t2 }}</td>
+                            <td v-if="item.t2 < 1000">{{ item.t2.toFixed(2) }}</td>
                             <td v-if="item.t2 >= 1000">DNF</td>
-                            <td v-if="item.t3 < 1000">{{ item.t3 }}</td>
+                            <td v-if="item.t3 < 1000">{{ item.t3.toFixed(2) }}</td>
                             <td v-if="item.t3 >= 1000">DNF</td>
-                            <td v-if="item.t4 < 1000">{{ item.t4 }}</td>
+                            <td v-if="item.t4 < 1000">{{ item.t4.toFixed(2) }}</td>
                             <td v-if="item.t4 >= 1000">DNF</td>
-                            <td v-if="item.t5 < 1000">{{ item.t5 }}</td>
+                            <td v-if="item.t5 < 1000">{{ item.t5.toFixed(2) }}</td>
                             <td v-if="item.t5 >= 1000">DNF</td>
                             <!--  这里如此复杂的原因是要匹配表格的数目和比赛所开的项目一致对齐，不然会错位-->
 
@@ -84,7 +84,6 @@
                 <c222:if test="${item.c_2 == 0}">
                     <td></td>
                 </c222:if> -->
-
                         </tr>
                     </tbody>
                 </table>

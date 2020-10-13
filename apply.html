@@ -82,7 +82,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 20px;
+        font-size: 18px;
     }
     .choose{
         flex: 2;
@@ -126,7 +126,6 @@
     </div>
     <div class="welcome">
         当前比赛: {{this.competition.name}}<br><br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请选择参赛项目
     </div>
     <form id="form">
     <div class="choose">
@@ -144,8 +143,8 @@
                 <label  style="margin: 10px " zoom="2" v-if="isShow1('e333fm')"><input type="checkbox"  value="1"  name="e333fm"/> &nbsp;最少步&nbsp;</label>
                 <label  style="margin: 10px " zoom="2" v-if="isShow1('eclock')"><input type="checkbox"  value="1"  name="eclock"/> &nbsp;魔表&nbsp;</label>
                 <label  style="margin: 10px " zoom="2" v-if="isShow1('eminx')"><input type="checkbox"  value="1"  name="eminx"/> &nbsp;五魔方&nbsp;</label>
-                <label  style="margin: 10px " zoom="2" v-if="isShow1('epyram')"><input type="checkbox"  value="1"  name="epyram"/> &nbsp;金字塔&nbsp;<br><br></label>
-                <label  style="margin: 10px " zoom="2" v-if="isShow1('eskewb')"><input type="checkbox"  value="1"  name="eskewb"/> &nbsp;斜转&nbsp;</label>
+                <label  style="margin: 10px " zoom="2" v-if="isShow1('epyram')"><input type="checkbox"  value="1"  name="epyram"/> &nbsp;金字塔&nbsp;</label>
+                <label  style="margin: 10px " zoom="2" v-if="isShow1('eskewb')"><input type="checkbox"  value="1"  name="eskewb"/> &nbsp;斜转&nbsp;<br><br></label>
                 <label  style="margin: 10px " zoom="2" v-if="isShow1('esq1')"><input type="checkbox"  value="1"  name="esq1"/> &nbsp;sq1&nbsp;</label>
                 <label  style="margin: 10px " zoom="2" v-if="isShow1('e444bf')"><input type="checkbox"  value="1"  name="e444bf"/> &nbsp;四盲&nbsp;</label>
                 <label  style="margin: 10px " zoom="2" v-if="isShow1('e555bf')"><input type="checkbox"  value="1"  name="e555bf"/> &nbsp;五盲&nbsp;<br><br></label>
