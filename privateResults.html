@@ -176,7 +176,7 @@ new Vue({
         },
         query(){
             var that = this;
-            axios.get("http://cube-online.lstf666.cn:8083/Cube-Online/player/queryMyResult?cId="+that.getUrlParam("pId")+"&event="+that.event+"&rounds="+$("#select2 option:selected").val()+"&&pId="+that.getUrlParam("pId")+"")
+            axios.get("http://cube-online.lstf666.cn:8083/Cube-Online/player/queryMyResult?cId="+that.getUrlParam("cId")+"&event="+that.event+"&rounds="+$("#select2 option:selected").val()+"&pId="+that.getUrlParam("pId")+"")
                 .then(function(res){
                 that.results = res.data.data
                 console.log(res.data.data);

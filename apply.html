@@ -197,7 +197,7 @@ new Vue({
         save() {
             var pId = this.pId;
             var data = $("#form").serialize();
-             axios.post("http://cube-online.lstf666.cn:8083/Cube-Online/player/chooseEvent",data).then(function(res){
+             axios.post("http://localhost:8084/player/chooseEvent",data).then(function(res){
                 if(res.data.type == 'success') {
                     javaex.message({
                         content : "报名成功！",
