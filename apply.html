@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,18 +24,21 @@
     <script src="javaex/pc/js/javaex-formVerify.js"></script>
 </head>
 <style>
-    .logo_image{
+    .logo_image {
         width: 93.84px;
         height: 64px;
         margin-left: 5px;
     }
-    .logo_name{
+    
+    .logo_name {
         margin-left: 20px;
     }
-    body{
+    
+    body {
         background-image: url(http://img.javaex.cn/FipOsQoe90u_7i3dOVpaeX5QD7c6)
     }
-    .main{
+    
+    .main {
         width: 400px;
         height: 500px;
         margin: auto;
@@ -44,174 +48,189 @@
         display: flex;
         flex-flow: column;
     }
-    .logo{
+    
+    .logo {
         flex: 2;
         display: flex;
     }
-    .admin_logo{
+    
+    .admin_logo {
         flex: 2;
         display: flex;
         justify-content: center;
         align-items: center;
-
     }
-    .admin_name{
+    
+    .admin_name {
         flex: 4;
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    .logo_name{
+    
+    .logo_name {
         font-size: 30px;
-        font-weight:500;
+        font-weight: 500;
     }
-    .admin,.contestant,.register{
+    
+    .admin,
+    .contestant,
+    .register {
         flex: 2;
         border-bottom: 0;
         display: flex;
     }
-    .admin_login,.contestant_login,.contestant_login{
+    
+    .admin_login,
+    .contestant_login,
+    .contestant_login {
         margin-top: 50px;
         width: 300px;
         height: 50px;
         margin: auto;
-        font-size:20px;
+        font-size: 20px;
     }
-    .welcome{
+    
+    .welcome {
         flex: 2;
         display: flex;
         justify-content: center;
         align-items: center;
         font-size: 18px;
     }
-    .choose{
+    
+    .choose {
         flex: 2;
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    .fill{
-        padding:10px;
+    
+    .fill {
+        padding: 10px;
         margin: 10px;
     }
-    .submit{
+    
+    .submit {
         flex: 2;
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    .button{
+    
+    .button {
         width: 70%;
     }
-
 </style>
 <style>
-    .admin{
+    .admin {
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size:25px;
+        font-size: 25px;
     }
 </style>
 <script>
+</script>
 
-</script>
 <body>
-<div class="main">
-    <div class="logo">
-        <div class="admin_logo"><img class="logo_image" src="https://ae01.alicdn.com/kf/H582410e2afca4e89a0ab646fb739786bH.png"/>
+    <div class="main">
+        <div class="logo">
+            <div class="admin_logo"><img class="logo_image" src="https://ae01.alicdn.com/kf/H582410e2afca4e89a0ab646fb739786bH.png" />
+            </div>
+            <div class="admin_name"><span class="logo_name">CubeOnline<br>魔方比赛系统</span>
+            </div>
         </div>
-        <div class="admin_name"><span class="logo_name">CubeOnline<br>魔方比赛系统</span>
+        <div class="welcome">
+            当前比赛: {{this.competition.name}}<br><br>
+        </div>
+        <form id="form">
+            <div class="choose">
+                <div class="box">
+                    <input type="hidden" :value="this.competition.cId" name="cId">
+                    <input type="hidden" :value="this.pId" name="pId">
+                    <label style="margin: 10px " zoom="2" v-if="isShow1('e222')"><input type="checkbox"  value="1"  name="e222"/> &nbsp;二阶&nbsp;</label>
+                    <label style="margin: 10px " zoom="2" v-if="isShow1('e333')"><input type="checkbox"  value="1"  name="e333"/> &nbsp;三阶&nbsp;</label>
+                    <label style="margin: 10px " zoom="2" v-if="isShow1('e444')"><input type="checkbox"  value="1"  name="e444"/> &nbsp;四阶&nbsp;</label>
+                    <label style="margin: 10px " zoom="2" v-if="isShow1('e555')"><input type="checkbox"  value="1"  name="e555"/> &nbsp;五阶&nbsp;<br><br></label>
+                    <label style="margin: 10px " zoom="2" v-if="isShow1('e666')"><input type="checkbox"  value="1"  name="e666"/> &nbsp;六阶&nbsp;</label>
+                    <label style="margin: 10px " zoom="2" v-if="isShow1('e777')"><input type="checkbox"  value="1"  name="e777"/> &nbsp;七阶&nbsp;</label>
+                    <label style="margin: 10px " zoom="2" v-if="isShow1('e333bf')"><input type="checkbox"  value="1"  name="e333bf"/> &nbsp;三盲&nbsp;</label>
+                    <label style="margin: 10px " zoom="2" v-if="isShow1('e333oh')"><input type="checkbox"  value="1"  name="e333oh"/> &nbsp;三单&nbsp;<br><br></label>
+                    <label style="margin: 10px " zoom="2" v-if="isShow1('e333fm')"><input type="checkbox"  value="1"  name="e333fm"/> &nbsp;最少步&nbsp;</label>
+                    <label style="margin: 10px " zoom="2" v-if="isShow1('eclock')"><input type="checkbox"  value="1"  name="eclock"/> &nbsp;魔表&nbsp;</label>
+                    <label style="margin: 10px " zoom="2" v-if="isShow1('eminx')"><input type="checkbox"  value="1"  name="eminx"/> &nbsp;五魔方&nbsp;</label>
+                    <label style="margin: 10px " zoom="2" v-if="isShow1('epyram')"><input type="checkbox"  value="1"  name="epyram"/> &nbsp;金字塔&nbsp;</label>
+                    <label style="margin: 10px " zoom="2" v-if="isShow1('eskewb')"><input type="checkbox"  value="1"  name="eskewb"/> &nbsp;斜转&nbsp;<br><br></label>
+                    <label style="margin: 10px " zoom="2" v-if="isShow1('esq1')"><input type="checkbox"  value="1"  name="esq1"/> &nbsp;sq1&nbsp;</label>
+                    <label style="margin: 10px " zoom="2" v-if="isShow1('e444bf')"><input type="checkbox"  value="1"  name="e444bf"/> &nbsp;四盲&nbsp;</label>
+                    <label style="margin: 10px " zoom="2" v-if="isShow1('e555bf')"><input type="checkbox"  value="1"  name="e555bf"/> &nbsp;五盲&nbsp;<br><br></label>
+                    <label style="margin: 10px " zoom="2" v-if="isShow1('e333mbf')"><input type="checkbox"  value="1"  name="e333bmf"/> &nbsp;三阶多盲&nbsp;</label>&nbsp;
+                </div>
+            </div>
+        </form>
+        <div class="submit">
+            <button class="button blue" @click="save()">确定报名</button>
         </div>
     </div>
-    <div class="welcome">
-        当前比赛: {{this.competition.name}}<br><br>
-    </div>
-    <form id="form">
-    <div class="choose">
-        <div class="box">
-                <input type="hidden" :value="this.competition.cId" name="cId">
-                <input type="hidden" :value="this.pId" name="pId">
-                <label  style="margin: 10px " zoom="2" v-if="isShow1('e222')"><input type="checkbox"  value="1"  name="e222"/> &nbsp;二阶&nbsp;</label>
-                <label  style="margin: 10px " zoom="2" v-if="isShow1('e333')"><input type="checkbox"  value="1"  name="e333"/> &nbsp;三阶&nbsp;</label>
-                <label  style="margin: 10px " zoom="2" v-if="isShow1('e444')"><input type="checkbox"  value="1"  name="e444"/> &nbsp;四阶&nbsp;</label>
-                <label  style="margin: 10px " zoom="2" v-if="isShow1('e555')"><input type="checkbox"  value="1"  name="e555"/> &nbsp;五阶&nbsp;<br><br></label>
-                <label  style="margin: 10px " zoom="2" v-if="isShow1('e666')"><input type="checkbox"  value="1"  name="e666"/> &nbsp;六阶&nbsp;</label>
-                <label  style="margin: 10px " zoom="2" v-if="isShow1('e777')"><input type="checkbox"  value="1"  name="e777"/> &nbsp;七阶&nbsp;</label>
-                <label  style="margin: 10px " zoom="2" v-if="isShow1('e333bf')"><input type="checkbox"  value="1"  name="e333bf"/> &nbsp;三盲&nbsp;</label>
-                <label  style="margin: 10px " zoom="2" v-if="isShow1('e333oh')"><input type="checkbox"  value="1"  name="e333oh"/> &nbsp;三单&nbsp;<br><br></label>
-                <label  style="margin: 10px " zoom="2" v-if="isShow1('e333fm')"><input type="checkbox"  value="1"  name="e333fm"/> &nbsp;最少步&nbsp;</label>
-                <label  style="margin: 10px " zoom="2" v-if="isShow1('eclock')"><input type="checkbox"  value="1"  name="eclock"/> &nbsp;魔表&nbsp;</label>
-                <label  style="margin: 10px " zoom="2" v-if="isShow1('eminx')"><input type="checkbox"  value="1"  name="eminx"/> &nbsp;五魔方&nbsp;</label>
-                <label  style="margin: 10px " zoom="2" v-if="isShow1('epyram')"><input type="checkbox"  value="1"  name="epyram"/> &nbsp;金字塔&nbsp;</label>
-                <label  style="margin: 10px " zoom="2" v-if="isShow1('eskewb')"><input type="checkbox"  value="1"  name="eskewb"/> &nbsp;斜转&nbsp;<br><br></label>
-                <label  style="margin: 10px " zoom="2" v-if="isShow1('esq1')"><input type="checkbox"  value="1"  name="esq1"/> &nbsp;sq1&nbsp;</label>
-                <label  style="margin: 10px " zoom="2" v-if="isShow1('e444bf')"><input type="checkbox"  value="1"  name="e444bf"/> &nbsp;四盲&nbsp;</label>
-                <label  style="margin: 10px " zoom="2" v-if="isShow1('e555bf')"><input type="checkbox"  value="1"  name="e555bf"/> &nbsp;五盲&nbsp;<br><br></label>
-                <label  style="margin: 10px " zoom="2" v-if="isShow1('e333mbf')"><input type="checkbox"  value="1"  name="e333bmf"/> &nbsp;三阶多盲&nbsp;</label>&nbsp;
-        </div>
-    </div>
-    </form>
-    <div class="submit">
-        <button class="button blue" @click="save()">确定报名</button>
-    </div>
-</div>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script>
-new Vue({
-    el: ".main",
-    data: {
-        competition:{},
-        pId:""
-    },
-    mounted: function() {
-        this.manageGame();
-    },
-    methods: {
-        getUrlParam(name) {
-            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-            var r = window.location.search.substr(1).match(reg);  //匹配目标参数
-            if (r != null) return decodeURI(r[2]); return null; //返回参数值
-        },
-        manageGame() {
-            var _this = this;
-            //查询比赛项目开设情况
-            axios.get("http://cube-online.lstf666.cn:8083/Cube-Online/admin/manage?cId="+this.getUrlParam("cId")+"")
-                .then(function(res){
-                    _this.competition = res.data.data;
-                    _this.pId =_this.getUrlParam("pId")
-                console.log(res);
-            },function(err){
-                console.log(err);
-            })
-            } ,
-        isShow1(event) {
-        //展示开设 项目
-        if(this.competition[event] != '0') {
-            return true;
-        }
-        return false;
-        },
-        save() {
-            var pId = this.pId;
-            var data = $("#form").serialize();
-             axios.post("http://localhost:8084/player/chooseEvent",data).then(function(res){
-                if(res.data.type == 'success') {
-                    javaex.message({
-                        content : "报名成功！",
-                        type : "success"
-                    });
-                    setTimeout(function() {
-                        location.href="gameInfo.html?pId="+pId+""
-		}, 1000);
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: ".main",
+            data: {
+                competition: {},
+                pId: ""
+            },
+            mounted: function() {
+                this.manageGame();
+            },
+            methods: {
+                getUrlParam(name) {
+                    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+                    var r = window.location.search.substr(1).match(reg); //匹配目标参数
+                    if (r != null) return decodeURI(r[2]);
+                    return null; //返回参数值
+                },
+                manageGame() {
+                    var _this = this;
+                    //查询比赛项目开设情况
+                    axios.get("http://cube-online.lstf666.cn:8083/Cube-Online/admin/manage?cId=" + this.getUrlParam("cId") + "")
+                        .then(function(res) {
+                            _this.competition = res.data.data;
+                            _this.pId = _this.getUrlParam("pId")
+                                // console.log(res);
+                        }, function(err) {
+                            console.log(err);
+                        })
+                },
+                isShow1(event) {
+                    //展示开设 项目
+                    if (this.competition[event] != '0') {
+                        return true;
+                    }
+                    return false;
+                },
+                save() {
+                    var pId = this.pId;
+                    var data = $("#form").serialize();
+                    axios.post("http://cube-online.lstf666.cn:8083/Cube-Online/player/chooseEvent", data).then(function(res) {
+                        if (res.data.type == 'success') {
+                            javaex.message({
+                                content: "报名成功！",
+                                type: "success"
+                            });
+                            setTimeout(function() {
+                                location.href = "gameInfo.html?pId=" + pId + ""
+                            }, 1000);
+                        }
+                    }, function(err) {
+                        console.log(err);
+                    })
                 }
-            },function(err){
-                console.log(err);
-            })          
-        }
-    }
-})
-</script>
+            }
+        })
+    </script>
 </body>
+
 </html>
