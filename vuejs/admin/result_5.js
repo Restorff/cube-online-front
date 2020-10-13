@@ -41,7 +41,7 @@ new Vue({
             axios.post("http://cube-online.lstf666.cn:8083/Cube-Online/admin/getScores?cId=" + _this.cId + "&event=" + _this.event).then(
                 function(response) {
                     _this.scoreList = response.data.scoreList
-                        // console.log(response);
+                    console.log(response);
                 }
             ).catch(
                 function(error) {
