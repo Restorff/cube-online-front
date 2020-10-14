@@ -5,7 +5,7 @@ new Vue({
     },
     mounted: function() {
         var adminUser = sessionStorage.getItem('adminUser');
-        if (adminUser != "root") {
+        if (adminUser == null) {
             javaex.message({
                 content: "当前权限不足，请登录后操作",
                 type: "error"
