@@ -4,6 +4,17 @@ new Vue({
         cId: 0
     },
     mounted: function() {
+        var adminUser = sessionStorage.getItem('adminUser');
+        if (adminUser != "root") {
+            javaex.message({
+                content: "当前权限不足，请登录后操作",
+                type: "error"
+            });
+            setTimeout(function() {
+                location.href = "adminLogin.html"
+            }, 2000);
+            return;
+        }
         this.cId = sessionStorage.getItem('cId')
     },
     methods: {

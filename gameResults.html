@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -22,45 +23,50 @@
     <script src="javaex/pc/js/javaex-formVerify.js"></script>
 </head>
 <style>
-    .logo_image{
-            width: 93.84px;
-            height: 64px;
-            margin-left: 5px;
-        }
-        .logo_name{
-            margin-left: 20px;
-        }
-        .logo{
-            flex: 2;
-            display: flex;
-        }
-        .admin_logo{
-            flex: 2;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+    .logo_image {
+        width: 93.84px;
+        height: 64px;
+        margin-left: 5px;
+    }
     
-        }
-        .admin_name{
-            flex: 4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .logo_name{
-            font-size: 30px;
-            font-weight:500;
-        }
+    .logo_name {
+        margin-left: 20px;
+    }
+    
+    .logo {
+        flex: 2;
+        display: flex;
+    }
+    
+    .admin_logo {
+        flex: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .admin_name {
+        flex: 4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .logo_name {
+        font-size: 30px;
+        font-weight: 500;
+    }
 </style>
+
 <body>
- <!--主体内容-->
-<div class="logo">
-    <div class="admin_logo"><img class="logo_image" src="https://ae01.alicdn.com/kf/H582410e2afca4e89a0ab646fb739786bH.png"/>
+    <!--主体内容-->
+    <div class="logo">
+        <div class="admin_logo"><img class="logo_image" src="https://ae01.alicdn.com/kf/H582410e2afca4e89a0ab646fb739786bH.png" />
+        </div>
+        <div class="admin_name"><span class="logo_name">CubeOnline 魔方比赛系统</span>
+        </div>
     </div>
-    <div class="admin_name"><span class="logo_name">CubeOnline 魔方比赛系统</span>
-    </div>
-</div>
-<div class="list-content">
+    <div class="list-content">
         <!--块元素-->
         <div class="block">
             <!--页面有多个表格时，可以用于标识表格-->
@@ -69,7 +75,7 @@
             <a href="javascript:history.back();">
                 <button class="button indigo radius-3" style="position: absolute;right: 20px;top: 16px;"><span class="icon-arrow_back"></span> 返回</button>
             </a>
-            
+
             <!--正文内容-->
             <div class="main">
                 <select id="select1" style="padding: 6px" @mouseleave="leave()">
@@ -92,7 +98,7 @@
                         <option v-show="isShowEvents('e555bf')" value="e555bf">五盲</option>
                         <option v-show="isShowEvents('e333mbf')" value="e333mbf">三阶多盲</option>
                 </select>
-                <select id="select2" style="padding: 6px"@mouseleave="query()" >
+                <select id="select2" style="padding: 6px" @mouseleave="query()">
                         <option value="">请选择轮次</option>
                         <option v-show="isShowRounds(this.event,'1')" value="1">1</option>
                         <option v-show="isShowRounds(this.event,'2')" value="2">2</option>
@@ -143,60 +149,73 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script>
-new Vue({
-    el: ".list-content",
-    data: {
-        competition:{},
-        results:[],
-        event:"",
-    },
-    mounted: function() {
-        this.checkGame();
-    },
-    methods: {
-        getUrlParam(name) {
-            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-            var r = window.location.search.substr(1).match(reg);  //匹配目标参数
-            if (r != null) return decodeURI(r[2]); return null; //返回参数值
+    new Vue({
+        el: ".list-content",
+        data: {
+            competition: {},
+            results: [],
+            event: "",
         },
-        checkGame() {
-            var that = this;
-            axios.get("http://cube-online.lstf666.cn:8083/Cube-Online/admin/manage?cId="+this.getUrlParam("cId")+"")
-                .then(function(res){
-                    that.competition = res.data.data;
-                console.log(res);
-            },function(err){
-                console.log(err);
-            })
-        },
-        isShowEvents(event) {
-            //展示开设
-            if(this.competition[event] != '0') {
-                return true;
+        mounted: function() {
+            var playUser = sessionStorage.getItem('playUser');
+            if (playUser == null) {
+                javaex.message({
+                    content: "当前权限不足，请登录后操作",
+                    type: "error"
+                });
+                setTimeout(function() {
+                    location.href = "playLogin.html"
+                }, 2000);
+                return;
             }
-            return false;
+            this.checkGame();
         },
-        isShowRounds(event,rounds) {
-            if(this.competition[event] >= rounds) {
-                return true;
+        methods: {
+            getUrlParam(name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+                var r = window.location.search.substr(1).match(reg); //匹配目标参数
+                if (r != null) return decodeURI(r[2]);
+                return null; //返回参数值
+            },
+            checkGame() {
+                var that = this;
+                axios.get("http://cube-online.lstf666.cn:8083/Cube-Online/admin/manage?cId=" + this.getUrlParam("cId") + "")
+                    .then(function(res) {
+                        that.competition = res.data.data;
+                        console.log(res);
+                    }, function(err) {
+                        console.log(err);
+                    })
+            },
+            isShowEvents(event) {
+                //展示开设
+                if (this.competition[event] != '0') {
+                    return true;
+                }
+                return false;
+            },
+            isShowRounds(event, rounds) {
+                if (this.competition[event] >= rounds) {
+                    return true;
+                }
+                return false;
+            },
+            query() {
+                var that = this;
+                axios.get("http://cube-online.lstf666.cn:8083/Cube-Online/player/queryAllResult?cId=" + that.getUrlParam("cId") + "&event=" + that.event + "&rounds=" + $("#select2 option:selected").val() + "")
+                    .then(function(res) {
+                        that.results = res.data.data
+                        console.log(res.data.data);
+                    }, function(err) {
+                        console.log(err);
+                    })
+            },
+            leave() {
+                var that = this;
+                that.event = $("#select1 option:selected").val();
             }
-            return false;
-        },
-        query(){
-            var that = this;
-            axios.get("http://cube-online.lstf666.cn:8083/Cube-Online/player/queryAllResult?cId="+that.getUrlParam("cId")+"&event="+that.event+"&rounds="+$("#select2 option:selected").val()+"")
-                .then(function(res){
-                that.results = res.data.data
-                console.log(res.data.data);
-            },function(err){
-                console.log(err);
-            })
-        },
-        leave() {
-            var that = this;
-            that.event = $("#select1 option:selected").val();
         }
-    }
-})    
+    })
 </script>
+
 </html>

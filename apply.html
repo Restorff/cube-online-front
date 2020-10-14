@@ -130,7 +130,28 @@
         font-size: 25px;
     }
 </style>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
 <script>
+    $(function() {
+        var playUser = sessionStorage.getItem('playUser');
+        if (playUser == null) {
+            javaex.message({
+                content: "当前权限不足，请登录后操作",
+                type: "error"
+            });
+            setTimeout(function() {
+                location.href = "playLogin.html"
+            }, 2000);
+            return;
+        } else {
+            console.log(playUser);
+
+        }
+
+
+    })
 </script>
 
 <body>
@@ -173,8 +194,6 @@
             <button class="button blue" @click="save()">确定报名</button>
         </div>
     </div>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
         new Vue({
             el: ".main",

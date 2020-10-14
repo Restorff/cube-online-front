@@ -118,48 +118,61 @@
     </div>
 </body>
 <script>
-new Vue({
-    el: ".main",
-    data: {
-        gameList: [],
-        pId:"",
-    },
-    mounted: function() {
-        this.checkGame();
-    },
-    methods: {
-        getUrlParam(name) {
-            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-            var r = window.location.search.substr(1).match(reg);  //匹配目标参数
-            if (r != null) return decodeURI(r[2]); return null; //返回参数值
+    new Vue({
+        el: ".main",
+        data: {
+            gameList: [],
+            pId: "",
         },
-        checkGame: function() {
-            var _this = this;
-            axios.post("http://cube-online.lstf666.cn:8083/Cube-Online/player/queryGame?pid="+this.getUrlParam('pId')+"").then(
-                function(response) {
-                    _this.gameList = response.data.data1
-                    _this.pId = _this.getUrlParam("pId");
-                    if(response.data.data1.length == 0) {
-                        javaex.message({
-                        content : "你尚未报名任何比赛！即将返回上一页面",
-                        type : "error"
-                        });
-                        setTimeout(function() {
-                            history.back(-1);
-		                }, 2000);
+        mounted: function() {
+            var playUser = sessionStorage.getItem('playUser');
+            if (playUser == null) {
+                javaex.message({
+                    content: "当前权限不足，请登录后操作",
+                    type: "error"
+                });
+                setTimeout(function() {
+                    location.href = "playLogin.html"
+                }, 2000);
+                return;
+            }
+            this.checkGame();
+        },
+        methods: {
+            getUrlParam(name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+                var r = window.location.search.substr(1).match(reg); //匹配目标参数
+                if (r != null) return decodeURI(r[2]);
+                return null; //返回参数值
+            },
+            checkGame: function() {
+                var _this = this;
+                axios.post("http://cube-online.lstf666.cn:8083/Cube-Online/player/queryGame?pid=" + this.getUrlParam('pId') + "").then(
+                    function(response) {
+                        _this.gameList = response.data.data1
+                        _this.pId = _this.getUrlParam("pId");
+                        if (response.data.data1.length == 0) {
+                            javaex.message({
+                                content: "你尚未报名任何比赛！即将返回上一页面",
+                                type: "error"
+                            });
+                            setTimeout(function() {
+                                history.back(-1);
+                            }, 2000);
+                        }
+                        console.log(response.data.data);
                     }
-                    console.log(response.data.data);
-                }
-            ).catch(
-                function(error) {
-                    console.log("发生了错误：" + error);
-                })
-        },
-        toGameResult: function(cId) {
-            // alert(cId),
-            window.location.href = "gameResults.html?cId="+cId+"&&pId="+this.pId+"";
+                ).catch(
+                    function(error) {
+                        console.log("发生了错误：" + error);
+                    })
+            },
+            toGameResult: function(cId) {
+                // alert(cId),
+                window.location.href = "gameResults.html?cId=" + cId + "&&pId=" + this.pId + "";
+            }
         }
-    }
-})
+    })
 </script>
+
 </html>

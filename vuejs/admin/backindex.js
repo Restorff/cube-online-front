@@ -1,27 +1,38 @@
 new Vue({
     el: ".admin-navbar",
     data: {
-        username: "",
+        adminUser: "",
         cId: "",
     },
     mounted: function() {
-        this.username = sessionStorage.getItem('username');
+        this.adminUser = sessionStorage.getItem('adminUser');
+        if (this.adminUser == null) {
+            javaex.message({
+                content: "当前权限不足，请登录后操作",
+                type: "error"
+            });
+            setTimeout(function() {
+                location.href = "adminLogin.html"
+            }, 2000);
+            return;
+        }
+        // this.adminUser = sessionStorage.getItem('adminUser');
         // alert(this.username);
         // alert(cId)
         // this.checkGame();
     },
     methods: {
         logout: function() {
-            axios.post("http://cube-online.lstf666.cn:8083/Cube-Online/admin/logout").then(
-                function(response) {
-                    sessionStorage.removeItem('username');
-                    // console.log(response);
-                    window.location.href = "/adminLogin.html";
-                }
-            ).catch(
-                function(error) {
-                    console.log("发生了错误：" + error);
-                })
+            // axios.post("http://cube-online.lstf666.cn:8083/Cube-Online/admin/logout").then(
+            //     function(response) {
+            sessionStorage.removeItem('adminUser');
+            // console.log(response);
+            window.location.href = "/adminLogin.html";
+            //     }
+            // ).catch(
+            //     function(error) {
+            //         console.log("发生了错误：" + error);
+            //     })
         },
 
     },

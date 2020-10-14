@@ -8,6 +8,17 @@ new Vue({
         isChecked: false
     },
     mounted: function() {
+        var root = sessionStorage.getItem('adminUser');
+        if (root == null) {
+            javaex.message({
+                content: "当前权限不足，请登录后操作",
+                type: "error"
+            });
+            setTimeout(function() {
+                location.href = "adminLogin.html"
+            }, 2000);
+            return;
+        }
         // alert(this.getQueryVariable("event"));
         this.event = this.getQueryVariable("event");
         this.cId = sessionStorage.getItem("cId");

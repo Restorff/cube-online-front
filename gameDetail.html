@@ -78,7 +78,7 @@
                             <li><button class="button navy"><span class="icon-check2"></span> 赛果</button></li>
 
                             <!--可以为选项卡右上角添加链接-->
-                            <a class="more" href="#" target="_blank">个人中心</a>
+                            <a class="more" target="_blank" href="playLogin.html" @click="logout">退出登录</a>
                             <span class="clearfix"></span>
                         </ul>
                     </div>
@@ -116,23 +116,23 @@
                         <div class="checked">
                             <form id="form2">
                                 <div class="box xiangmu">
-                                        <label zoom="2" v-show="isShow2('e222')"><input checked disabled="disabled" type="checkbox"  value="1"  name="e222"/> &nbsp;二阶</label>&nbsp;
-                                        <label zoom="2" v-show="isShow2('e333')"><input checked disabled="disabled" type="checkbox"  value="1"  name="e333"/> &nbsp;三阶</label>&nbsp;
-                                        <label zoom="2" v-show="isShow2('e444')"><input checked disabled="disabled" type="checkbox"  value="1"  name="e444"/> &nbsp;四阶</label>&nbsp;
-                                        <label zoom="2" v-show="isShow2('e555')"><input checked disabled="disabled" type="checkbox"  value="1"  name="e555"/> &nbsp;五阶</label>&nbsp;
-                                        <label zoom="2" v-show="isShow2('e666')"><input checked disabled="disabled" type="checkbox"  value="1"  name="e666"/> &nbsp;六阶</label>&nbsp;
-                                        <label zoom="2" v-show="isShow2('e777')"><input checked disabled="disabled" type="checkbox"  value="1"  name="e777"/> &nbsp;七阶</label>&nbsp;
-                                        <label zoom="2" v-show="isShow2('e333bf')"><input checked disabled="disabled"  type="checkbox"  value="1"  name="e333bf"/> &nbsp;三盲</label>&nbsp;
-                                        <label zoom="2" v-show="isShow2('e333oh')"><input checked disabled="disabled"  type="checkbox"  value="1"  name="e333oh"/> &nbsp;三单</label>&nbsp;
-                                        <label zoom="2" v-show="isShow2('e333fm')"><input checked disabled="disabled"  type="checkbox"  value="1"  name="e333fm"/> &nbsp;最少步</label>&nbsp;
-                                        <label zoom="2" v-show="isShow2('eclock')"><input checked disabled="disabled"  type="checkbox"  value="1"  name="eclock"/> &nbsp;魔表</label>&nbsp;
-                                        <label zoom="2" v-show="isShow2('eminx')"><input  checked disabled="disabled" type="checkbox"  value="1"  name="eminx"/> &nbsp;五魔方</label>&nbsp;
-                                        <label zoom="2" v-show="isShow2('epyram')"><input checked disabled="disabled"  type="checkbox"  value="1"  name="epyram"/> &nbsp;金字塔</label>&nbsp;
-                                        <label zoom="2" v-show="isShow2('eskewb')"><input checked disabled="disabled"  type="checkbox"  value="1"  name="eskewb"/> &nbsp;斜转</label>&nbsp;
-                                        <label zoom="2" v-show="isShow2('esq1')"><input  checked disabled="disabled"type="checkbox"  value="1"  name="esq1"/> &nbsp;sq1</label>&nbsp;
-                                        <label zoom="2" v-show="isShow2('e444bf')"><input checked disabled="disabled" type="checkbox"  value="1"  name="e444bf"/> &nbsp;四盲</label>&nbsp;
-                                        <label zoom="2" v-show="isShow2('e555bf')"><input  checked disabled="disabled"type="checkbox"  value="1"  name="e555bf"/> &nbsp;五盲</label>&nbsp;
-                                        <label zoom="2" v-show="isShow2('e333mbf')"><input checked disabled="disabled" type="checkbox"  value="1"  name="e333mbf"/> &nbsp;三阶多盲</label>&nbsp;
+                                    <label zoom="2" v-show="isShow2('e222')"><input checked disabled="disabled" type="checkbox"  value="1"  name="e222"/> &nbsp;二阶</label>&nbsp;
+                                    <label zoom="2" v-show="isShow2('e333')"><input checked disabled="disabled" type="checkbox"  value="1"  name="e333"/> &nbsp;三阶</label>&nbsp;
+                                    <label zoom="2" v-show="isShow2('e444')"><input checked disabled="disabled" type="checkbox"  value="1"  name="e444"/> &nbsp;四阶</label>&nbsp;
+                                    <label zoom="2" v-show="isShow2('e555')"><input checked disabled="disabled" type="checkbox"  value="1"  name="e555"/> &nbsp;五阶</label>&nbsp;
+                                    <label zoom="2" v-show="isShow2('e666')"><input checked disabled="disabled" type="checkbox"  value="1"  name="e666"/> &nbsp;六阶</label>&nbsp;
+                                    <label zoom="2" v-show="isShow2('e777')"><input checked disabled="disabled" type="checkbox"  value="1"  name="e777"/> &nbsp;七阶</label>&nbsp;
+                                    <label zoom="2" v-show="isShow2('e333bf')"><input checked disabled="disabled"  type="checkbox"  value="1"  name="e333bf"/> &nbsp;三盲</label>&nbsp;
+                                    <label zoom="2" v-show="isShow2('e333oh')"><input checked disabled="disabled"  type="checkbox"  value="1"  name="e333oh"/> &nbsp;三单</label>&nbsp;
+                                    <label zoom="2" v-show="isShow2('e333fm')"><input checked disabled="disabled"  type="checkbox"  value="1"  name="e333fm"/> &nbsp;最少步</label>&nbsp;
+                                    <label zoom="2" v-show="isShow2('eclock')"><input checked disabled="disabled"  type="checkbox"  value="1"  name="eclock"/> &nbsp;魔表</label>&nbsp;
+                                    <label zoom="2" v-show="isShow2('eminx')"><input  checked disabled="disabled" type="checkbox"  value="1"  name="eminx"/> &nbsp;五魔方</label>&nbsp;
+                                    <label zoom="2" v-show="isShow2('epyram')"><input checked disabled="disabled"  type="checkbox"  value="1"  name="epyram"/> &nbsp;金字塔</label>&nbsp;
+                                    <label zoom="2" v-show="isShow2('eskewb')"><input checked disabled="disabled"  type="checkbox"  value="1"  name="eskewb"/> &nbsp;斜转</label>&nbsp;
+                                    <label zoom="2" v-show="isShow2('esq1')"><input  checked disabled="disabled"type="checkbox"  value="1"  name="esq1"/> &nbsp;sq1</label>&nbsp;
+                                    <label zoom="2" v-show="isShow2('e444bf')"><input checked disabled="disabled" type="checkbox"  value="1"  name="e444bf"/> &nbsp;四盲</label>&nbsp;
+                                    <label zoom="2" v-show="isShow2('e555bf')"><input  checked disabled="disabled"type="checkbox"  value="1"  name="e555bf"/> &nbsp;五盲</label>&nbsp;
+                                    <label zoom="2" v-show="isShow2('e333mbf')"><input checked disabled="disabled" type="checkbox"  value="1"  name="e333mbf"/> &nbsp;三阶多盲</label>&nbsp;
                                 </div>
                             </form>
                             <div class="submit">
@@ -147,94 +147,110 @@
             </div>
         </div>
     </div>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
-<script>
-new Vue({
-    el: ".list-content",
-    data: {
-        apply:{},
-        competition:{},
-        pId:"",
-        cId:"",
-    },
-    mounted: function() {
-        if(this.getUrlParam("pId") != null) {
-            this.checkGame();
-        }
-        this.manageGame();
-    },
-    methods: {
-        getUrlParam(name) {
-            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-            var r = window.location.search.substr(1).match(reg);  //匹配目标参数
-            if (r != null) return decodeURI(r[2]); return null; //返回参数值
-        },
-        checkGame: function() {
-            var _this = this;
-            //查询报名情况
-            axios.get("http://cube-online.lstf666.cn:8083/Cube-Online/player/queryEvents?cId="+this.getUrlParam("cId")+"&pId="+this.getUrlParam("pId")+"").then(
-                function(response) {
-                    _this.apply = response.data.apply;
-                    _this.pId = _this.getUrlParam("pId");
-                    _this.cId = _this.getUrlParam("cId");
-                    console.log(response.data.apply);
-                }
-            ).catch(
-                function(error) {
-                    console.log("发生了错误：" + error);
-                })
+    <script>
+        new Vue({
+            el: ".list-content",
+            data: {
+                apply: {},
+                competition: {},
+                pId: "",
+                cId: "",
             },
-        manageGame() {
-            var _this = this;
-            //查询比赛项目开设情况
-            axios.get("http://cube-online.lstf666.cn:8083/Cube-Online/admin/manage?cId="+this.getUrlParam("cId")+"")
-                .then(function(res){
-                    _this.competition = res.data.data;
-                console.log(res);
-            },function(err){
-                console.log(err);
-            })
-            } ,
-        isShow1(event) {
-            //展示开设 且 未报名
-            if(this.competition[event] != '0' && this.apply[event] == '0') {
-                return true;
-            }
-            return false;
-        },
-        isShow2(event) {
-            //展示报名项目
-            if(this.apply[event] == '1') {
-                return true;
-            }
-            return false;
-        },
-        save(){
-            // http://localhost:8084/player/addApply
-            var data = $("#form1").serialize();
-            axios.post("http://cube-online.lstf666.cn:8083/Cube-Online/player/addApply",data)
-                .then(function(res){
+            mounted: function() {
+                var playUser = sessionStorage.getItem('playUser');
+                if (playUser == null) {
                     javaex.message({
-                        content : "你的参赛信息已变更",
-                        type : "success"
-                        });
-                        setTimeout(function() {
-                            window.location.reload()
-		                }, 1000);
-         
-            },function(err){
-                console.log(err);
-            })
-        },
-        toGameResults() {
-            location.href = "gameResults.html?cId="+this.getUrlParam("cId")+"";
-        }
-    }
-})
-</script>
-<script>
+                        content: "当前权限不足，请登录后操作",
+                        type: "error"
+                    });
+                    setTimeout(function() {
+                        location.href = "playLogin.html"
+                    }, 2000);
+                    return;
+                }
+                if (this.getUrlParam("pId") != null) {
+                    this.checkGame();
+                }
+                this.manageGame();
+            },
+            methods: {
+                logout() {
+                    sessionStorage.removeItem('playUser');
+                    window.location.href = "/playLogin.html";
+                },
+                getUrlParam(name) {
+                    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+                    var r = window.location.search.substr(1).match(reg); //匹配目标参数
+                    if (r != null) return decodeURI(r[2]);
+                    return null; //返回参数值
+                },
+                checkGame: function() {
+                    var _this = this;
+                    //查询报名情况
+                    axios.get("http://cube-online.lstf666.cn:8083/Cube-Online/player/queryEvents?cId=" + this.getUrlParam("cId") + "&pId=" + this.getUrlParam("pId") + "").then(
+                        function(response) {
+                            _this.apply = response.data.apply;
+                            _this.pId = _this.getUrlParam("pId");
+                            _this.cId = _this.getUrlParam("cId");
+                            console.log(response.data.apply);
+                        }
+                    ).catch(
+                        function(error) {
+                            console.log("发生了错误：" + error);
+                        })
+                },
+                manageGame() {
+                    var _this = this;
+                    //查询比赛项目开设情况
+                    axios.get("http://cube-online.lstf666.cn:8083/Cube-Online/admin/manage?cId=" + this.getUrlParam("cId") + "")
+                        .then(function(res) {
+                            _this.competition = res.data.data;
+                            console.log(res);
+                        }, function(err) {
+                            console.log(err);
+                        })
+                },
+                isShow1(event) {
+                    //展示开设 且 未报名
+                    if (this.competition[event] != '0' && this.apply[event] == '0') {
+                        return true;
+                    }
+                    return false;
+                },
+                isShow2(event) {
+                    //展示报名项目
+                    if (this.apply[event] == '1') {
+                        return true;
+                    }
+                    return false;
+                },
+                save() {
+                    // http://localhost:8084/player/addApply
+                    var data = $("#form1").serialize();
+                    axios.post("http://cube-online.lstf666.cn:8083/Cube-Online/player/addApply", data)
+                        .then(function(res) {
+                            javaex.message({
+                                content: "你的参赛信息已变更",
+                                type: "success"
+                            });
+                            setTimeout(function() {
+                                window.location.reload()
+                            }, 1000);
+
+                        }, function(err) {
+                            console.log(err);
+                        })
+                },
+                toGameResults() {
+                    location.href = "gameResults.html?cId=" + this.getUrlParam("cId") + "";
+                }
+            }
+        })
+    </script>
+    <script>
         javaex.tab({
             id: "tab", // tab的id
             current: 1, // 默认选中第几个选项卡
@@ -247,4 +263,5 @@ new Vue({
         });
     </script>
 </body>
+
 </html>
