@@ -106,7 +106,7 @@
                         <option v-show="isShowRounds(this.event,'3')" value="3">3</option>
                         <option v-show="isShowRounds(this.event,'4')" value="4">4</option>
                 </select>
-                <button class="button gray" @click="query()">查询</button>
+                <button class="button gray" @click="query()" style="margin-bottom: 3px">查询</button>
                 <!--表格上方的操作元素，添加、删除等-->
                 <table id="table" class="table color2" style="margin-top: 10px">
                     <thead>
@@ -122,7 +122,7 @@
                             <th>详情5</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody v-if="isShowBody()">
                         <tr>
                             <td>{{results.pId}}</td>
                             <td>{{results.name}}</td>
@@ -204,8 +204,11 @@
                 var that = this;
                 axios.get("http://cube-online.lstf666.cn:8083/Cube-Online/player/queryMyResult?cId=" + that.getUrlParam("cId") + "&event=" + that.event + "&rounds=" + $("#select2 option:selected").val() + "&pId=" + that.getUrlParam("pId") + "")
                     .then(function(res) {
-                        that.results = res.data.data
-                        console.log(res.data.data);
+                        if(res.data.type == 'success') {
+                            that.results = res.data.data;
+                        } else {
+                            that.results = {} ;
+                        }
                     }, function(err) {
                         console.log(err);
                     })
@@ -213,6 +216,9 @@
             leave() {
                 var that = this;
                 that.event = $("#select1 option:selected").val();
+            },
+            isShowBody() {
+                return JSON.stringify(this.results)!='{}';
             }
         }
     })
