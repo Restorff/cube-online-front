@@ -1,36 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>滑动验证</title>
-	
-    <link rel="stylesheet" href="css/style.css">
-	
-    <script type="text/javascript" src="js/style.js"></script>
-	
+  <meta charset="UTF-8">
+  <title>滑动拼图验证码</title>
+  <style>
+    #msg {
+      width: 100%;
+      line-height: 40px;
+      font-size: 14px;
+      text-align: center;
+    }
+    a:link,a:visited,a:hover,a:active {
+      margin-left: 100px;
+      color: #0366D6;
+    }
+  </style>
 </head>
 <body>
+<div class="container">
+  <div id="captcha"></div>
+  <div id="msg"></div>
+</div>
+<script src="vuejs/jigsaw.min.js"></script>
+<script src="javaex/pc/lib/jquery-1.7.2.min.js"></script>
 
-    <div id="slideBar"></div>
-    <script>
-        function getUrlParam(name) {
-            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-            var r = window.location.search.substr(1).match(reg); //匹配目标参数
-            if (r != null) return decodeURI(r[2]);
-            return null; //返回参数值
+<script>
+     function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg); //匹配目标参数
+        if (r != null) return decodeURI(r[2]);
+        return null; //返回参数值
     }
-    </script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="javaex/pc/lib/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript">
-        var dataList = ["0","1"];
-        var options = {
-            dataList: dataList,
-            success:function(){  
-                var username = getUrlParam("username");
+</script>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!-- 官网提供的 axios 在线地址 -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  jigsaw.init({
+    el: document.getElementById('captcha'),
+    onSuccess: function() {
+        var username = getUrlParam("username");
                 var password = getUrlParam("password");
                 var isAdmin = getUrlParam("isAdmin");
                 if(isAdmin == '1'){
@@ -79,13 +89,13 @@
                 }
             }) 
                 }
-            },
-                fail: function(){
-                    console.log("fail");  
-                }
-            };
-            SliderBar("slideBar", options);
-    </script>
-	
+    },
+    onFail: cleanMsg,
+    onRefresh: cleanMsg
+  })
+  function cleanMsg() {
+    document.getElementById('msg').innerHTML = ''
+  }
+</script>
 </body>
 </html>

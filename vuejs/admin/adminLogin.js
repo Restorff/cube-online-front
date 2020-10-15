@@ -8,7 +8,7 @@ var form_login = new Vue({
             javaex.dialog({
                 type : "dialog",	// 弹出层类型
                 width : "330",
-                height : "210",
+                height : "230",
                 url : "check.html?"+formser+"&isAdmin=1"
             });
         }
