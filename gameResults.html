@@ -78,7 +78,7 @@
 
             <!--正文内容-->
             <div class="main">
-                <select id="select1" style="padding: 6px" @mouseleave="leave()">
+                <select id="select1" style="padding: 8px" @mouseleave="leave()">
                         <option value="">请选择项目</option>
                         <option v-show="isShowEvents('e222')" value="e222">二阶</option>
                         <option v-show="isShowEvents('e333')" value="e333">三阶</option>
@@ -98,13 +98,14 @@
                         <option v-show="isShowEvents('e555bf')" value="e555bf">五盲</option>
                         <option v-show="isShowEvents('e333mbf')" value="e333mbf">三阶多盲</option>
                 </select>
-                <select id="select2" style="padding: 6px" @mouseleave="query()">
+                <select id="select2" style="padding: 8px" @mouseleave="query()">
                         <option value="">请选择轮次</option>
                         <option v-show="isShowRounds(this.event,'1')" value="1">1</option>
                         <option v-show="isShowRounds(this.event,'2')" value="2">2</option>
                         <option v-show="isShowRounds(this.event,'3')" value="3">3</option>
                         <option v-show="isShowRounds(this.event,'4')" value="4">4</option>
                 </select>
+                <button class="button gray" @click="query()" style="margin-bottom: 5px">查询</button>
                 <!--表格上方的操作元素，添加、删除等-->
                 <table id="table" class="table color2" style="margin-top: 10px">
                     <thead>
