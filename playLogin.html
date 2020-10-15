@@ -177,7 +177,14 @@
                 return;
             }
             var json = $("#form").serialize();
-            $.ajax({
+            // alert(sessionStorage.getItem('username'));
+            javaex.dialog({
+                type : "dialog",	// 弹出层类型
+                width : "330",
+                height : "210",
+                url : "check.html?"+json+"&isAdmin=0"
+            });
+/*             $.ajax({
                 url: 'http://cube-online.lstf666.cn:8083/Cube-Online/player/login',
                 type: 'GET',
                 data: json,
@@ -196,7 +203,7 @@
                         });
                     }
                 }
-            })
+            }) */
         })
     })
 </script>

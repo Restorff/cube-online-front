@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>滑动验证</title>
+	
+    <link rel="stylesheet" href="css/style.css">
+	
+    <script type="text/javascript" src="js/style.js"></script>
+	
+</head>
+<body>
+
+    <div id="slideBar"></div>
+    <script>
+        function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+            var r = window.location.search.substr(1).match(reg); //匹配目标参数
+            if (r != null) return decodeURI(r[2]);
+            return null; //返回参数值
+    }
+    </script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="javaex/pc/lib/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript">
+        var dataList = ["0","1"];
+        var options = {
+            dataList: dataList,
+            success:function(){  
+                var username = getUrlParam("username");
+                var password = getUrlParam("password");
+                var isAdmin = getUrlParam("isAdmin");
+                if(isAdmin == '1'){
+                    axios.post("http://cube-online.lstf666.cn:8083/Cube-Online/admin/login?","username="+username+"&password="+password+"").then(
+                    function(response) {
+                        console.log(response);
+                        if (response.data.type == "error") {
+                            alert(response.data.msg + ',请重新输入')
+                            parent.javaex.close();
+                        } else {
+                            sessionStorage['adminUser'] = response.data.admin.username;
+                            if (response.data.isRoot == '1') {
+                                alert('您是本站超级管理员,' + response.data.msg + ",点击确定，跳转到主页面");
+                                parent.window.location.href = "/rootLogined.html";
+                            } else {
+                                alert('您是本站普通管理员,' + response.data.msg + ",点击确定，跳转到主页面");
+                                parent.window.location.href = "/gameList.html";
+                            }
+                            // 将信息存入session
+
+                            // alert(sessionStorage.getItem('username'));
+                        }
+                    }
+                ).catch(
+                    function(error) {
+                        console.log("发生了错误：" + error);
+                    })
+                } else {
+                $.ajax({
+                url: 'http://cube-online.lstf666.cn:8083/Cube-Online/player/login?username='+username+'&password='+password+'',
+                type: 'GET',
+                contentType: 'application/json;charset=utf-8',
+                success: function(res) {
+                    if (res.type === 'success') {
+                        // console.log(res)
+                        sessionStorage['playUser'] = res.player.username;
+                        // console.log(sessionStorage.getItem('playUser'));
+                        parent.window.location.href = "playCenter.html?name=" + res.player.name + "&&pId=" + res.player.pId + "";
+                    } else {
+                        parent.javaex.close();
+                        parent.javaex.message({
+                            content: res.msg,
+                            type: "error"
+                        });
+                    }
+                }
+            }) 
+                }
+            },
+                fail: function(){
+                    console.log("fail");  
+                }
+            };
+            SliderBar("slideBar", options);
+    </script>
+	
+</body>
+</html>
